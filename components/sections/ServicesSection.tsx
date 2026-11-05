@@ -1,77 +1,59 @@
 ﻿import Link from "next/link";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-function BimIcon() {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
-      <rect x="6" y="10" width="36" height="30" rx="6" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M16 22H32M16 30H24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M24 10V40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function WebIcon() {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
-      <rect x="6" y="9" width="36" height="30" rx="6" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M6 18H42" stroke="currentColor" strokeWidth="2.5" />
-      <circle cx="13" cy="13.5" r="1.5" fill="currentColor" />
-      <circle cx="18" cy="13.5" r="1.5" fill="currentColor" />
-      <path d="M18 29L22 25L18 21M28 21L24 25L28 29" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function IntegrationIcon() {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
-      <circle cx="14" cy="14" r="5" stroke="currentColor" strokeWidth="2.5" />
-      <circle cx="34" cy="14" r="5" stroke="currentColor" strokeWidth="2.5" />
-      <circle cx="24" cy="34" r="5" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M18.5 16.5H29.5M17 18.5L21.5 29.5M31 29.5L35 18.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
-}
+import { SectionHeading } from "@/components/sections/SectionHeading";
+import { ArrowRightIcon, BuildingIcon, CodeIcon, LayersIcon, MobileIcon, SparklesIcon, UsersIcon } from "@/components/ui/icons";
+import { routes } from "@/lib/site";
 
 const services = [
   {
+    title: "Web Application Development",
+    desc: "Fast, secure web platforms and customer portals built to handle real traffic and grow with your business.",
+    tags: ["Next.js & React", "Customer portals", "SEO-ready"],
+    icon: CodeIcon,
+    href: routes.servicesWeb,
+  },
+  {
+    title: "Mobile App Development",
+    desc: "Android and iOS apps your customers enjoy using, connected to your back office in real time.",
+    tags: ["Android & iOS", "UI/UX design", "API connected"],
+    icon: MobileIcon,
+    href: routes.servicesWeb,
+  },
+  {
+    title: "CRM & ERP Systems",
+    desc: "Replace spreadsheets with one system for leads, orders, inventory and reporting, shaped around your process.",
+    tags: ["Lead management", "Workflows", "Dashboards"],
+    icon: UsersIcon,
+    href: routes.servicesWeb,
+  },
+  {
+    title: "SaaS Product Engineering",
+    desc: "From MVP to market-ready product with subscriptions, multi-tenant architecture and analytics built in.",
+    tags: ["MVP to scale", "Billing", "Multi-tenant"],
+    icon: LayersIcon,
+    href: routes.servicesWeb,
+  },
+  {
+    title: "AI, Integration & Automation",
+    desc: "Connect the tools you already use and let automation and AI handle the repetitive work your team does by hand.",
+    tags: ["API integrations", "AI assistants", "Data sync"],
+    icon: SparklesIcon,
+    href: routes.servicesAutomation,
+  },
+  {
     title: "BIM Automation & Tekla",
-    desc: "Custom Tekla automation and BIM workflows for structural engineering teams.",
-    bullets: ["Tekla Plugin Development", "Automated Drawing Tools", "BOM & Report Customization"],
-    icon: BimIcon,
-    iconWrap: "bg-[#e8f1fb] text-[#2f5f90]",
-    cardTone: "from-[#f5f9ff] to-[#eef5fd]",
-    chipTone: "bg-[#eaf3fb] text-[#2f5f90]",
-    href: "/services/bim-automation-tekla-custom-development",
-  },
-  {
-    title: "Web Development & Digital Solutions",
-    desc: "Scalable digital products built for performance and growth.",
-    bullets: ["Full-Stack Web Development", "SaaS Product Development", "CRM Development"],
-    icon: WebIcon,
-    iconWrap: "bg-[#e6f8f7] text-[#0f766e]",
-    cardTone: "from-[#f3fdfc] to-[#ebfbf9]",
-    chipTone: "bg-[#e9f8f6] text-[#0f766e]",
-    href: "/services/web-development-digital-solutions",
-  },
-  {
-    title: "Software Integration & Custom Automation",
-    desc: "Connect systems and remove manual bottlenecks with custom integrations.",
-    bullets: ["API-Based Tool Development", "Process Automation", "Data Synchronization"],
-    icon: IntegrationIcon,
-    iconWrap: "bg-[#ecfdf3] text-[#15803d]",
-    cardTone: "from-[#f6fef9] to-[#effcf4]",
-    chipTone: "bg-[#ecfdf3] text-[#15803d]",
-    href: "/services/software-integration-custom-automation",
+    desc: "Custom Tekla plugins and Revit tools that automate drawings, BOMs and reports for structural engineering teams.",
+    tags: ["Tekla Open API", "Drawing automation", "Revit"],
+    icon: BuildingIcon,
+    href: routes.servicesBim,
   },
 ] as const;
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-white py-20 sm:py-24">
+    <section id="services" className="scroll-mt-20 bg-white py-20 sm:py-28">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+<<<<<<< HEAD
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-[#eaf4fd] px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">
             What We Build
@@ -83,13 +65,24 @@ export function ServicesSection() {
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
+=======
+        <SectionHeading
+          eyebrow="What we do"
+          title="One team for every layer of your software"
+          description="Whether you need a customer-facing app, an internal system or automation behind the scenes, we design, build and support it end to end."
+        />
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+>>>>>>> 39a65ba (changes in new)
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <Card
+              <Link
                 key={service.title}
-                className={`group rounded-3xl border border-[#7DA0CA]/35 bg-gradient-to-br ${service.cardTone} shadow-[0_10px_28px_rgba(84,131,179,0.12)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#22c55e]/45 hover:shadow-[0_0_0_1px_rgba(34,197,94,0.18),0_16px_36px_rgba(34,197,94,0.16)]`}
+                href={service.href}
+                className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-[0_24px_50px_rgba(2,16,36,0.08)]"
               >
+<<<<<<< HEAD
                 <CardHeader>
                   <div className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${service.iconWrap} shadow-sm transition-transform duration-300 group-hover:scale-105`}>
                     <Icon />
@@ -110,6 +103,26 @@ export function ServicesSection() {
                   </Link>
                 </CardContent>
               </Card>
+=======
+                <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[var(--primary)] to-sky-300 transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-[var(--primary)] transition-colors group-hover:bg-[var(--primary)] group-hover:text-white">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="mt-6 text-xl font-bold">{service.title}</h3>
+                <p className="mt-3 flex-1 text-[15px] leading-7 text-[var(--text-body)]">{service.desc}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {service.tags.map((tag) => (
+                    <li key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)]">
+                  Learn more
+                  <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+>>>>>>> 39a65ba (changes in new)
             );
           })}
         </div>

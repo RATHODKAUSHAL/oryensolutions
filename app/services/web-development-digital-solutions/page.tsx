@@ -4,9 +4,9 @@ import { ServicePageTemplate } from "@/app/services/_components/ServicePageTempl
 import { buildMetadata, routes } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Web Development & Digital Solutions",
+  title: "Web, Mobile & SaaS Development",
   description:
-    "Custom web development, SaaS engineering, CRM implementation, and SEO-ready digital platforms built by OryenSolutions.",
+    "Custom web applications, mobile apps, CRM & ERP systems and SaaS products built by Oryen Solutions for startups and businesses in the US and worldwide.",
   path: routes.servicesWeb,
   keywords: ["Next.js development services", "SaaS development company", "custom CRM development"],
   image: "/Assets/Web Development & Digital Solutions.png",
@@ -15,35 +15,71 @@ export const metadata: Metadata = buildMetadata({
 export default function WebDevelopmentPage() {
   return (
     <ServicePageTemplate
-      badge="Web & Digital Services"
+      badge="Web, Mobile & SaaS"
       slug={routes.servicesWeb}
-      title="Web Development & Digital Solutions"
-      description="From business websites to full SaaS products, we build modern digital platforms focused on performance, UX quality, and scalable architecture."
+      title="Web, Mobile & SaaS Development"
+      description="From customer-facing websites and mobile apps to CRMs and full SaaS products, we design and build software that's fast, reliable and ready to grow with your business."
       heroImage="/Assets/Web Development & Digital Solutions.png"
-      highlights={["Next.js & React", "SaaS Platforms", "Modern UX"]}
+      highlights={["Next.js & React", "Android & iOS", "CRM & ERP", "SaaS products"]}
       capabilities={[
-        "Custom website and web app development",
-        "SaaS product engineering from MVP to scale",
-        "CRM and dashboard implementation",
-        "Frontend performance optimization",
-        "SEO-ready architecture and content structure",
+        {
+          title: "Web applications & portals",
+          text: "Customer portals, booking systems, marketplaces and internal tools built on a modern, secure stack.",
+        },
+        {
+          title: "Mobile apps",
+          text: "Android and iOS apps with intuitive UX, offline support and real-time sync with your back office.",
+        },
+        {
+          title: "CRM & ERP systems",
+          text: "One system for leads, customers, orders, inventory and reporting, shaped around how your team works.",
+        },
+        {
+          title: "SaaS product engineering",
+          text: "From MVP to scale: multi-tenant architecture, subscriptions, billing and analytics built in.",
+        },
+        {
+          title: "UI/UX design",
+          text: "Research-led wireframes and clickable prototypes so you can validate the experience before development.",
+        },
+        {
+          title: "Business websites & SEO",
+          text: "Fast, SEO-ready websites with clean content structure that turn visitors into enquiries.",
+        },
       ]}
       outcomes={[
-        "Faster feature rollout cycles",
-        "Improved user retention and engagement",
-        "Better conversion through cleaner UX flows",
-        "Reliable and scalable long-term architecture",
+        { title: "Faster time to market", text: "Weekly working builds mean you launch sooner and start learning from real users." },
+        { title: "Less manual work", text: "Replace spreadsheets and copy-paste with workflows that run themselves." },
+        { title: "Better conversion", text: "Clear, fast user journeys that turn more visitors into customers." },
+        { title: "Room to grow", text: "Scalable architecture that handles more users and features without a rebuild." },
       ]}
+      idealFor={[
+        "A startup building its first product or MVP",
+        "A growing business outgrowing spreadsheets",
+        "A company replacing slow or outdated software",
+        "A team that needs a customer-facing app",
+      ]}
+      stack={["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "MongoDB", "AWS", "Vercel", "Stripe", "Figma"]}
       faqs={[
         {
-          question: "What does OryenSolutions build in web development projects?",
+          question: "What does Oryen Solutions build in web and mobile projects?",
           answer:
-            "OryenSolutions builds business websites, SaaS platforms, dashboards, portals, CRM systems, and custom web applications with a focus on performance and maintainability.",
+            "We build business websites, web applications, customer portals, mobile apps for Android and iOS, CRM and ERP systems, dashboards and full SaaS products, with a focus on performance, usability and maintainability.",
+        },
+        {
+          question: "How long does it take to build a web or mobile app?",
+          answer:
+            "Most projects take 4 to 12 weeks depending on scope. An MVP with a focused feature set is usually at the shorter end, and we show you a working build every week.",
+        },
+        {
+          question: "Do you build SaaS products from scratch?",
+          answer:
+            "Yes. We take SaaS products from idea to launch, including architecture, user management, subscriptions and billing, analytics dashboards and ongoing feature development.",
         },
         {
           question: "How do you make websites SEO-ready?",
           answer:
-            "The team uses semantic HTML, structured metadata, optimized images, clear content architecture, and a scalable Next.js foundation that supports strong technical SEO.",
+            "We use semantic HTML, structured metadata, optimized images, fast page loads and a clear content architecture on a Next.js foundation that supports strong technical SEO.",
         },
         {
           question: "Do you develop custom SaaS products?",

@@ -19,12 +19,14 @@
     "@supabase/supabase-js": "^2.108.2",
     "better-sqlite3": "^12.11.1",
     "dotenv": "^17.4.2",
+    "cobe": "^2.0.1",
     "framer-motion": "^12.34.5",
     "jsonwebtoken": "^9.0.3",
     "next": "16.1.1",
     "prisma": "^7.8.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "resend": "^6.35.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

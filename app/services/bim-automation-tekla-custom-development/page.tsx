@@ -15,35 +15,71 @@ export const metadata: Metadata = buildMetadata({
 export default function BimAutomationPage() {
   return (
     <ServicePageTemplate
-      badge="BIM & Tekla Services"
+      badge="BIM & Tekla Automation"
       slug={routes.servicesBim}
       title="BIM Automation & Tekla Custom Development"
-      description="We build custom Tekla tools and BIM automation workflows to reduce manual effort, improve model consistency, and accelerate engineering delivery."
+      description="Custom Tekla plugins, macros and Revit tools that remove repetitive modelling, drawing and reporting work, so your structural engineering team delivers faster with fewer errors."
       heroImage="/Assets/BIM & Tekla Services.png"
-      highlights={["Tekla Open API", "Drawing Automation", "Faster Detailing"]}
+      highlights={["Tekla Open API", "Drawing automation", "BOM & reports", "Revit tools"]}
       capabilities={[
-        "Custom Tekla plugin and macro development",
-        "Automated drawing creation and sheet generation",
-        "BOM and reporting customization",
-        "Tekla + Excel workflow automation",
-        "Model validation and rule-based checks",
+        {
+          title: "Tekla plugin & macro development",
+          text: "Custom tools built on the Tekla Open API to automate the repetitive steps in your modelling workflow.",
+        },
+        {
+          title: "Automated drawing creation",
+          text: "Generate GA, assembly and single-part drawings and sheets automatically to your standards.",
+        },
+        {
+          title: "BOM & report customization",
+          text: "Bills of materials and reports formatted exactly how your team and clients need them.",
+        },
+        {
+          title: "Tekla–Excel integration",
+          text: "Move model data to and from Excel and other tools without manual exports and re-entry.",
+        },
+        {
+          title: "Model validation & checks",
+          text: "Rule-based checks that catch modelling issues before they reach drawings or the shop floor.",
+        },
+        {
+          title: "Rebar & Revit automation",
+          text: "Automation tools for rebar detailing and Revit workflows that cut hours of manual work.",
+        },
       ]}
       outcomes={[
-        "Reduced repetitive drafting time",
-        "Improved detail accuracy and consistency",
-        "Faster issue resolution in project cycles",
-        "Higher visibility in structural deliverables",
+        { title: "Less repetitive drafting", text: "Hours of manual drawing and reporting work handled by tools instead." },
+        { title: "More consistent output", text: "Every drawing and report follows the same standards automatically." },
+        { title: "Fewer detailing errors", text: "Automated checks catch issues early, reducing costly revisions." },
+        { title: "Faster project delivery", text: "Your detailers spend more time on engineering and less on admin." },
       ]}
+      idealFor={[
+        "A steel or precast detailing firm",
+        "A structural engineering consultancy",
+        "A fabricator using Tekla Structures",
+        "A BIM team with repetitive manual workflows",
+      ]}
+      stack={["Tekla Open API", "Tekla Structures", "Revit API", "AutoCAD", "C# / .NET", "Excel"]}
       faqs={[
         {
           question: "What is BIM automation in Tekla workflows?",
           answer:
-            "BIM automation in Tekla workflows uses custom tools, plugins, and rules to reduce repetitive modeling, drawing, and reporting tasks across structural engineering projects.",
+            "BIM automation in Tekla uses custom plugins, macros and rules to handle repetitive modelling, drawing and reporting tasks automatically across structural engineering projects.",
         },
         {
           question: "How does Tekla custom development help engineering teams?",
           answer:
-            "Tekla custom development improves consistency, shortens detailing time, reduces manual errors, and gives teams better control over recurring engineering workflows.",
+            "It shortens detailing time, improves consistency across drawings and reports, reduces manual errors and gives teams more control over recurring engineering workflows.",
+        },
+        {
+          question: "Can you build tools for our specific drawing standards?",
+          answer:
+            "Yes. We build tools around your company's own templates, drawing standards and reporting formats, so the output matches what your team and clients expect.",
+        },
+        {
+          question: "Do you work with Revit as well as Tekla?",
+          answer:
+            "Yes. Alongside Tekla, we build automation for Revit and AutoCAD workflows, including rebar detailing and data exchange between tools.",
         },
         {
           question: "What kinds of BIM workflows can be automated?",

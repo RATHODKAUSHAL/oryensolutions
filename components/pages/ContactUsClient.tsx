@@ -2,31 +2,59 @@
 
 import { useState } from "react";
 
-import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { ArrowRightIcon, CheckIcon } from "@/components/ui/icons";
 
-export function ContactUsClient() {
+const services = [
+  "Startup MVP",
+  "Web application",
+  "Mobile app",
+  "CRM / ERP system",
+  "SaaS product",
+  "AI & automation",
+  "BIM / Tekla automation",
+  "Something else",
+] as const;
+
+const budgets = ["Under $5k", "$5k – $15k", "$15k – $50k", "$50k+", "Not sure yet"] as const;
+const timelines = ["As soon as possible", "Within 1–3 months", "In 3–6 months", "Flexible"] as const;
+
+const fieldClass =
+  "h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[var(--primary)] focus:ring-4 focus:ring-sky-100";
+const labelClass = "mb-1.5 block text-xs font-semibold text-slate-600";
+
+function ChoiceGroup({ name, label, options }: { name: string; label: string; options: readonly string[] }) {
+  return (
+    <fieldset>
+      <legend className={labelClass}>{label}</legend>
+      <div className="flex flex-wrap gap-2">
+        {options.map((option) => (
+          <label key={option} className="cursor-pointer">
+            <input type="radio" name={name} value={option} className="peer sr-only" />
+            <span className="inline-flex rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 transition peer-checked:border-[var(--navy)] peer-checked:bg-[var(--navy)] peer-checked:text-white peer-focus-visible:ring-4 peer-focus-visible:ring-sky-100 hover:border-slate-300">
+              {option}
+            </span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+export function ContactUsForm() {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<string>("");
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("");
+    setError("");
     setLoading(true);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const payload = {
-      fullName: String(formData.get("fullName") ?? ""),
-      companyName: String(formData.get("companyName") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
-      subject: String(formData.get("subject") ?? ""),
-      message: String(formData.get("message") ?? ""),
-    };
+    const value = (key: string) => String(formData.get(key) ?? "");
 
+<<<<<<< HEAD
     const res = await fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -38,80 +66,143 @@ export function ContactUsClient() {
       form.reset();
       setStatus("Thank you. Your inquiry has been submitted.");
       return;
+=======
+    try {
+      const res = await fetch("/api/contact-submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: value("fullName"),
+          companyName: value("companyName"),
+          email: value("email"),
+          phone: value("phone"),
+          service: value("service"),
+          budget: value("budget"),
+          timeline: value("timeline"),
+          message: value("message"),
+        }),
+      });
+      if (res.ok) {
+        form.reset();
+        setSent(true);
+        return;
+      }
+      const { error: message } = await res.json().catch(() => ({}));
+      setError(message ?? "Submission failed. Please try again.");
+    } catch {
+      setError("Couldn't send your message. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+>>>>>>> 39a65ba (changes in new)
     }
-    setStatus("Submission failed. Please try again.");
+  }
+
+  if (sent) {
+    return (
+      <div className="flex min-h-[520px] flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-[0_30px_60px_rgba(2,16,36,0.08)]">
+        <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+          <CheckIcon className="h-8 w-8 text-emerald-600" />
+        </span>
+        <h2 className="mt-6 text-2xl font-bold">Thank you, your enquiry is in</h2>
+        <p className="mt-3 max-w-sm text-[15px] leading-7 text-slate-600">
+          We&apos;ll review your project and reply by email with next steps and a time to talk.
+        </p>
+        <button type="button" onClick={() => setSent(false)} className="mt-8 text-sm font-semibold text-[var(--primary)]">
+          Send another enquiry
+        </button>
+      </div>
+    );
   }
 
   return (
-    <main className="min-h-screen bg-white text-[#021024]">
-      <Navbar />
+    <form
+      onSubmit={handleSubmit}
+      aria-labelledby="contact-form-heading"
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_30px_60px_rgba(2,16,36,0.08)] sm:p-9"
+    >
+      <h2 id="contact-form-heading" className="text-2xl font-bold">
+        Tell us about your project
+      </h2>
+      <p className="mt-1.5 text-sm text-slate-500">The more you share, the more useful our first reply will be.</p>
 
-      <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(84,131,179,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(84,131,179,0.1)_1px,transparent_1px)] bg-[size:88px_88px]" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#052659]">
-              Contact Us
-            </p>
-            <h1 className="mt-5 text-4xl font-bold sm:text-5xl">How Can OryenSolutions Help Your Business?</h1>
-            <p className="mt-4 text-lg text-slate-600">
-              Contact OryenSolutions to discuss web development, BIM automation, CRM, SaaS, and software integration requirements with a technical team.
-            </p>
-          </div>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="c-name" className={labelClass}>
+            Full name *
+          </label>
+          <input id="c-name" name="fullName" required maxLength={100} placeholder="Jane Smith" className={fieldClass} />
         </div>
-      </section>
-
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <section className="rounded-3xl border border-[#7DA0CA]/35 bg-[#f8fcff] p-7 shadow-[0_10px_24px_rgba(84,131,179,0.1)]" aria-labelledby="contact-details-heading">
-            <h2 id="contact-details-heading" className="text-2xl font-bold">Get in Touch</h2>
-            <p className="mt-3 text-slate-600">Share your requirements and our team will connect with you to plan the right solution.</p>
-
-            <div className="mt-6 space-y-4 text-sm text-slate-700">
-              <div className="rounded-xl border border-[#7DA0CA]/30 bg-white px-4 py-3">
-                <p className="font-semibold text-[#052659]">Email</p>
-                <p className="mt-1">info@oryensolutions.com</p>
-              </div>
-              <div className="rounded-xl border border-[#7DA0CA]/30 bg-white px-4 py-3">
-                <p className="font-semibold text-[#052659]">Phone</p>
-                <p className="mt-1">+91 92658 85370</p>
-              </div>
-              <div className="rounded-xl border border-[#7DA0CA]/30 bg-white px-4 py-3">
-                <p className="font-semibold text-[#052659]">Location</p>
-                <p className="mt-1">Ahmedabad, Gujarat, India</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-7 shadow-[0_10px_24px_rgba(84,131,179,0.1)]" aria-labelledby="contact-form-heading">
-            <h2 id="contact-form-heading" className="text-2xl font-bold">Send a Message</h2>
-            <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Input aria-label="Full name" name="fullName" placeholder="Full Name" required className="h-11 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-                <Input aria-label="Company name" name="companyName" placeholder="Company Name" className="h-11 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Input aria-label="Email address" name="email" type="email" required placeholder="Email Address" className="h-11 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-                <Input aria-label="Phone number" name="phone" placeholder="Phone Number" className="h-11 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-              </div>
-              <Input aria-label="Subject" name="subject" placeholder="Subject" className="h-11 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-              <textarea
-                aria-label="Project requirements"
-                name="message"
-                required
-                placeholder="Tell us about your project requirements..."
-                className="min-h-32 w-full rounded-xl border border-[#7DA0CA]/40 bg-[#f8fcff] px-3 py-2 text-sm outline-none ring-0 placeholder:text-slate-400 focus:border-[#5483B3]"
-              />
-              <Button disabled={loading} type="submit" className="h-11 rounded-xl bg-[#0077b6] px-6 text-white hover:bg-[#005f92]">
-                {loading ? "Submitting..." : "Submit Inquiry"}
-              </Button>
-              {status && <p className="text-sm text-slate-600">{status}</p>}
-            </form>
-          </section>
+        <div>
+          <label htmlFor="c-company" className={labelClass}>
+            Company
+          </label>
+          <input id="c-company" name="companyName" maxLength={150} placeholder="Company name" className={fieldClass} />
         </div>
-      </section>
+        <div>
+          <label htmlFor="c-email" className={labelClass}>
+            Email *
+          </label>
+          <input id="c-email" name="email" type="email" required maxLength={254} placeholder="you@company.com" className={fieldClass} />
+        </div>
+        <div>
+          <label htmlFor="c-phone" className={labelClass}>
+            Phone
+          </label>
+          <input id="c-phone" name="phone" type="tel" maxLength={30} placeholder="+1 555 000 0000" className={fieldClass} />
+        </div>
+      </div>
 
-      <Footer />
-    </main>
+      <div className="mt-4">
+        <label htmlFor="c-service" className={labelClass}>
+          What do you need? *
+        </label>
+        <select id="c-service" name="service" required defaultValue="" className={`${fieldClass} text-slate-700`}>
+          <option value="" disabled>
+            Select a service
+          </option>
+          {services.map((service) => (
+            <option key={service} value={service}>
+              {service}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mt-5 grid gap-5">
+        <ChoiceGroup name="budget" label="Estimated budget" options={budgets} />
+        <ChoiceGroup name="timeline" label="When do you want to start?" options={timelines} />
+      </div>
+
+      <div className="mt-5">
+        <label htmlFor="c-message" className={labelClass}>
+          Project details *
+        </label>
+        <textarea
+          id="c-message"
+          name="message"
+          required
+          maxLength={5000}
+          rows={5}
+          placeholder="What are you building, who is it for, and what problem should it solve?"
+          className={`${fieldClass} h-auto resize-y py-3`}
+        />
+      </div>
+
+      <label className="mt-5 flex items-start gap-3 text-sm text-slate-600">
+        <input type="checkbox" name="consent" required className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 accent-[var(--primary)]" />
+        I agree to Oryen Solutions contacting me about this enquiry.
+      </label>
+
+      {error ? <p className="mt-4 text-sm text-rose-600">{error}</p> : null}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="group mt-7 inline-flex h-13 w-full items-center justify-center gap-2 rounded-full bg-[var(--navy)] py-3.5 text-sm font-semibold text-white transition hover:bg-[var(--primary)] disabled:opacity-60 sm:w-auto sm:px-8"
+      >
+        {loading ? "Sending…" : "Send enquiry"}
+        {!loading ? <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /> : null}
+      </button>
+    </form>
   );
 }

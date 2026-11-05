@@ -1,69 +1,58 @@
 import Link from "next/link";
 
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { LogoImage } from "@/components/ui/logo-image";
+import { routes } from "@/lib/site";
 
-const logosRow1 = [
-  { name: "Microsoft Excel", short: "XL", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" },
-  { name: "ChatGPT", short: "AI", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" },
-  { name: "PayPal", short: "PP", logo: "https://cdn.simpleicons.org/paypal/00457C" },
-  { name: "Google Drive", short: "GD", logo: "https://cdn.simpleicons.org/googledrive/4285F4" },
-  { name: "Claude", short: "CL", logo: "https://cdn.simpleicons.org/claude/D97757" },
-  { name: "AngularJS", short: "NG", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/angular.svg" },
-  { name: "Node.js", short: "ND", logo: "https://cdn.simpleicons.org/nodedotjs/5FA04E" },
-  { name: "PostgreSQL", short: "PG", logo: "https://cdn.simpleicons.org/postgresql/4169E1" },
+const icon = (slug: string, color: string) => `https://cdn.simpleicons.org/${slug}/${color}`;
+
+const tools = [
+  { name: "React", short: "RC", logo: icon("react", "61DAFB") },
+  { name: "Next.js", short: "NX", logo: icon("nextdotjs", "000000") },
+  { name: "Node.js", short: "ND", logo: icon("nodedotjs", "5FA04E") },
+  { name: "TypeScript", short: "TS", logo: icon("typescript", "3178C6") },
+  { name: "PostgreSQL", short: "PG", logo: icon("postgresql", "4169E1") },
+  { name: "MongoDB", short: "MG", logo: icon("mongodb", "47A248") },
+  { name: "Google Cloud", short: "GC", logo: icon("googlecloud", "4285F4") },
+  { name: "OpenAI", short: "AI", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" },
+  { name: "Stripe", short: "SP", logo: icon("stripe", "635BFF") },
+  { name: "Figma", short: "FG", logo: icon("figma", "F24E1E") },
+  { name: "Tekla", short: "TK", logo: "" },
+  { name: "Revit", short: "RV", logo: "" },
 ] as const;
-
-const logosRow2 = [
-  { name: "Figma", short: "FG", logo: "https://cdn.simpleicons.org/figma/F24E1E" },
-  { name: "Next.js", short: "NX", logo: "https://cdn.simpleicons.org/nextdotjs/000000" },
-  { name: "CAD", short: "CD", logo: "https://cdn.simpleicons.org/autocad/E51050" },
-  { name: "React", short: "RC", logo: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "MySQL", short: "MY", logo: "https://cdn.simpleicons.org/mysql/4479A1" },
-  { name: "JavaScript", short: "JS", logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
-  { name: "MongoDB", short: "MG", logo: "https://cdn.simpleicons.org/mongodb/47A248" },
-  { name: "Google Analytics", short: "GA", logo: "https://cdn.simpleicons.org/googleanalytics/E37400" },
-  { name: "Stripe Payments", short: "SP", logo: "https://cdn.simpleicons.org/stripe/635BFF" },
-  { name: "Autodesk", short: "AD", logo: "https://cdn.simpleicons.org/autodesk/0696D7" },
-] as const;
-
-function LogoRow({ items, reverse = false }: { items: readonly { name: string; short: string; logo: string }[]; reverse?: boolean }) {
-  const doubled = [...items, ...items];
-  return (
-    <div className="overflow-hidden">
-      <div className={`marquee-wrap flex w-[200%] gap-4 ${reverse ? "marquee-track-reverse" : "marquee-track"}`}>
-        {doubled.map((item, index) => (
-          <div
-            key={`${item.name}-${index}`}
-            className="flex min-w-[140px] items-center gap-3 rounded-3xl border border-[#7DA0CA]/45 bg-white p-5 shadow-[0_6px_16px_rgba(84,131,179,0.14)] sm:min-w-[170px] sm:p-6"
-          >
-            <LogoImage name={item.name} short={item.short} logo={item.logo} />
-            <span className="text-sm font-semibold text-[#052659]">{item.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function IntegrationsSection() {
   return (
-    <section className="py-20 sm:py-24">
+    <section id="technology" className="scroll-mt-20 border-y border-slate-200 bg-white py-12 sm:py-14">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="hero-grid rounded-3xl border border-[#7DA0CA]/40 bg-[#f8fcff] px-6 py-14 text-[#021024] sm:px-10">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">Integrations</p>
-            <h2 className="mt-5 text-4xl font-bold tracking-tight">Don&apos;t replace. Integrate.</h2>
-            <p className="mt-4 text-[#052659]/80">We understand the hassle of replacing tools your team already uses. That&apos;s why our solutions integrate with the platforms you rely on daily.</p>
-            <Link href="/services/software-integration-custom-automation" className="mt-6 inline-block text-sm font-semibold text-[#5483B3] underline underline-offset-4 hover:text-[#052659]">
-              Explore integration services
-            </Link>
+        <div className="flex flex-col items-center justify-between gap-4 text-center lg:flex-row lg:text-left">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--primary)]">Technology</p>
+            <h2 className="mt-2 text-xl font-bold sm:text-2xl">Built on proven technology, connected to the tools you already use</h2>
           </div>
-
-          <div className="mt-10 space-y-4">
-            <LogoRow items={logosRow1} />
-            <LogoRow items={logosRow2} reverse />
-          </div>
+          <Link
+            href={routes.servicesAutomation}
+            className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-[var(--primary)]"
+          >
+            Integration services
+            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
+
+        <ul className="mt-8 grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-12">
+          {tools.map((tool) => (
+            <li
+              key={tool.name}
+              title={tool.name}
+              className="group flex flex-col items-center gap-2 rounded-2xl px-1 py-3 transition hover:bg-slate-50"
+            >
+              <span className="grayscale transition group-hover:grayscale-0 [&_img]:h-8 [&_img]:w-8">
+                <LogoImage name={tool.name} short={tool.short} logo={tool.logo} />
+              </span>
+              <span className="text-[11px] font-medium text-slate-500">{tool.name}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ type LogoImageProps = {
 };
 
 export function LogoImage({ name, short, logo }: LogoImageProps) {
-  const [hasError, setHasError] = useState(false);
+  const [hasError, setHasError] = useState(!logo);
 
   return (
     <div className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center sm:h-12 sm:w-12">

@@ -1,27 +1,29 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { Separator } from "@/components/ui/separator";
+import { FooterGlobe } from "@/components/layout/FooterGlobe";
+import { FooterWordmark } from "@/components/layout/FooterWordmark";
+import { routes, siteConfig } from "@/lib/site";
 
-const aboutLinks = [
-  { label: "About Us", href: "/about" },
-  { label: "Agile Mindset", href: "/agile-mindset" },
-  { label: "Our Process", href: "/#process" },
+const navLinks = [
+  { label: "Home", href: routes.home },
+  { label: "Services", href: "/#services" },
+  { label: "Industries", href: "/#industries" },
+  { label: "About", href: routes.about },
+  { label: "Agile", href: routes.agileMindset },
+  { label: "Careers", href: routes.careers },
+  { label: "Contact", href: routes.contact },
 ] as const;
 
 const serviceLinks = [
   { label: "Web Development", href: "/services/web-development-digital-solutions" },
-  { label: "React Development", href: "/services/react-development-company" },
-  { label: "Next.js Development", href: "/services/nextjs-development-company" },
-  { label: "CRM Development", href: "/services/crm-development-services" },
-  { label: "SaaS Development", href: "/services/saas-product-development" },
+  { label: "CRM Development", href: "/services/web-development-digital-solutions" },
+  { label: "SaaS Development", href: "/services/web-development-digital-solutions" },
 ] as const;
 
 const bimLinks = [
-  { label: "BIM Automation", href: "/services/bim-automation-services" },
-  { label: "Tekla Plugin Development", href: "/services/tekla-plugin-development" },
-  { label: "API Integration", href: "/services/api-integration-services" },
-  { label: "Workflow Automation", href: "/services/business-workflow-automation" },
+  { label: "Tekla Automation", href: "/services/bim-automation-tekla-custom-development" },
+  { label: "Revit Development", href: "/services/bim-automation-tekla-custom-development" },
+  { label: "BIM Integration", href: "/services/software-integration-custom-automation" },
 ] as const;
 
 const socials = [
@@ -45,70 +47,112 @@ const socials = [
   },
 ] as const;
 
-function Column({ title, items }: { title: string; items: readonly { label: string; href: string }[] }) {
+function ArrowUpRight() {
   return (
-    <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#052659]">{title}</p>
-      <ul className="mt-4 space-y-2.5">
-        {items.map((item) => (
-          <li key={item.label}>
-            <Link href={item.href} className="text-sm text-slate-600 transition hover:text-[#052659]">
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <path d="M7 17 17 7M9 7h8v8" />
+    </svg>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#7DA0CA]/35 bg-[#f8fcff] py-14 text-[#021024]">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-6 shadow-[0_10px_28px_rgba(84,131,179,0.1)] sm:p-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <Image src="/Assets/Oryen_Solutions.png" alt="Oryen Solutions logo" width={220} height={125} className="h-14 w-auto object-contain" />
-            </div>
-            <p className="max-w-xl text-sm leading-6 text-slate-600 sm:text-right">
-              Your vision, our technology - perfectly crafted. We build web, CRM, SaaS, and BIM automation solutions that improve workflow speed.
+    <footer className="relative isolate overflow-hidden bg-[var(--navy)] text-slate-300">
+      <div className="pointer-events-none absolute inset-0 -z-10 dark-grid opacity-60" />
+      <div className="pointer-events-none absolute -bottom-40 right-0 -z-10 h-[30rem] w-[40rem] rounded-full bg-[#0077b6]/25 blur-[140px]" />
+
+      <div className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+          <div>
+            <p className="flex items-center gap-2 text-sm font-semibold text-sky-300">
+              <span aria-hidden="true">✦</span> Get in touch
             </p>
+            <p className="mt-5 max-w-2xl text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl">
+              Ready to build something new, or simply want to{" "}
+              <span className="relative inline-block whitespace-nowrap font-[family-name:var(--font-script)] text-[1.15em] font-semibold text-sky-300">
+                explore ideas
+                <svg viewBox="0 0 200 12" preserveAspectRatio="none" className="absolute -bottom-1.5 left-0 h-3 w-full" aria-hidden="true">
+                  <path d="M2 8 C 50 2, 100 12, 198 4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                </svg>
+              </span>
+              ?
+            </p>
+
+            <p className="mt-10 text-xs text-slate-500">Reach us at:</p>
+            <div className="mt-3 space-y-2">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="group flex w-fit items-center gap-2 text-lg font-semibold text-white transition hover:text-sky-300 sm:text-xl"
+              >
+                {siteConfig.email}
+                <span className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  <ArrowUpRight />
+                </span>
+              </a>
+              <a
+                href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+                className="group flex w-fit items-center gap-2 text-lg font-semibold text-white transition hover:text-sky-300 sm:text-xl"
+              >
+                {siteConfig.phone}
+                <span className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  <ArrowUpRight />
+                </span>
+              </a>
+            </div>
           </div>
 
-          <Separator className="my-8 bg-[#7DA0CA]/25" />
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <Column title="About" items={aboutLinks} />
-            <Column title="Services" items={serviceLinks} />
-            <Column title="BIM" items={bimLinks} />
-
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#052659]">Contact</p>
-              <div className="mt-4 space-y-2.5 text-sm text-slate-600">
-                <p>info@oryensolutions.com</p>
-                <p>+91 92658 85370</p>
-                <p>Ahmedabad, Gujarat, India</p>
-              </div>
-              <div className="mt-4 flex items-center gap-2">
-                {socials.map((s) => (
-                  <Link
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={s.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#7DA0CA]/60 bg-white text-[#052659] transition hover:border-[#5483B3] hover:bg-[#e9f5ff]"
-                  >
-                    {s.icon}
-                  </Link>
-                ))}
-              </div>
+          <div className="flex flex-col items-start gap-5 lg:items-end">
+            <FooterGlobe />
+            <p className="flex items-center gap-2 text-xs font-medium text-slate-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+              Ahmedabad, India · Serving the US & worldwide
+            </p>
+            <div className="flex flex-wrap gap-2 lg:justify-end">
+              {serviceLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-slate-200 transition hover:border-sky-400/50 hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-slate-500">(c) 2026 OryenSolutions. All rights reserved.</p>
+        <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-3">
+            {navLinks.map((item) => (
+              <Link key={item.label} href={item.href} className="text-sm font-medium text-slate-300 transition hover:text-white">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-slate-300 transition hover:border-sky-300 hover:text-sky-300"
+              >
+                {s.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <FooterWordmark />
+        </div>
+
+        <div className="flex flex-col items-center justify-between gap-2 border-t border-white/10 py-6 text-xs text-slate-500 sm:flex-row">
+          <p>© {new Date().getFullYear()} Oryen Solutions. All rights reserved.</p>
+          <p>Designed &amp; built in Ahmedabad, India.</p>
+        </div>
       </div>
     </footer>
   );

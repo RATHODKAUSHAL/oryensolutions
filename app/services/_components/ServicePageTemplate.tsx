@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { breadcrumbList, faqSchema, routes, serviceSchema, webPageSchema } from "@/lib/site";
+import { breadcrumbList, faqSchema, routes, serviceSchema } from "@/lib/site";
 
 type ServicePageTemplateProps = {
   badge: string;
@@ -13,10 +13,33 @@ type ServicePageTemplateProps = {
   slug: string;
   heroImage: string;
   highlights: readonly string[];
-  capabilities: readonly string[];
-  outcomes: readonly string[];
+  capabilities: readonly { title: string; text: string }[];
+  outcomes: readonly { title: string; text: string }[];
+  idealFor: readonly string[];
+  stack: readonly string[];
   faqs: readonly { question: string; answer: string }[];
 };
+
+const allServices = [
+  {
+    title: "Web, Mobile & SaaS Development",
+    text: "Web apps, mobile apps, CRM, ERP and SaaS products.",
+    href: routes.servicesWeb,
+    icon: CodeIcon,
+  },
+  {
+    title: "AI, Integration & Automation",
+    text: "Connect your systems and automate manual work.",
+    href: routes.servicesAutomation,
+    icon: PlugIcon,
+  },
+  {
+    title: "BIM Automation & Tekla Development",
+    text: "Tekla plugins, drawing automation and Revit tools.",
+    href: routes.servicesBim,
+    icon: BuildingIcon,
+  },
+] as const;
 
 export function ServicePageTemplate({
   badge,
@@ -27,22 +50,20 @@ export function ServicePageTemplate({
   highlights,
   capabilities,
   outcomes,
+  idealFor,
+  stack,
   faqs,
 }: ServicePageTemplateProps) {
+  const related = allServices.filter((service) => service.href !== slug);
+
   return (
-    <main className="min-h-screen bg-white text-[#021024]">
+    <main className="min-h-screen bg-white text-[var(--text-heading)]">
       <StructuredData
         data={[
           breadcrumbList([
             { name: "Home", path: routes.home },
             { name: title, path: slug },
           ]),
-          webPageSchema({
-            name: title,
-            description,
-            path: slug,
-            type: "Service",
-          }),
           serviceSchema({
             name: title,
             description,
@@ -54,90 +75,162 @@ export function ServicePageTemplate({
       />
       <Navbar />
 
-      <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(84,131,179,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(84,131,179,0.1)_1px,transparent_1px)] bg-[size:88px_88px]" />
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
-            <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#052659]">
-              {badge}
-            </p>
-            <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-5xl">{title}</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-600">{description}</p>
-            <div className="mt-7 flex flex-wrap gap-2.5">
-              {highlights.map((item) => (
-                <span key={item} className="rounded-full border border-[#7DA0CA]/45 bg-white px-3 py-1.5 text-sm font-semibold text-[#052659]">
-                  {item}
-                </span>
-              ))}
+      <PageHero
+        breadcrumb={title}
+        eyebrow={badge}
+        title={title}
+        description={description}
+        chips={highlights}
+        primaryCta={{ label: "Book a free consultation", href: "#contact" }}
+        secondaryCta={{ label: "See what we deliver", href: "#capabilities" }}
+        aside={
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-[2.5rem] bg-sky-400/15 blur-2xl" />
+            <div className="relative overflow-hidden rounded-3xl border border-white/15 shadow-[0_40px_80px_rgba(0,0,0,0.45)]">
+              <Image src={heroImage} alt={title} width={1536} height={1024} priority sizes="(max-width: 1024px) 100vw, 600px" className="h-auto w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/70 via-transparent to-transparent" />
             </div>
-          </div>
-          <div className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-5 shadow-[0_12px_30px_rgba(84,131,179,0.14)]">
-            <Image src={heroImage} alt={title} width={640} height={420} className="h-auto w-full rounded-2xl object-cover" />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <section className="rounded-3xl border border-[#7DA0CA]/35 bg-[#f8fcff] p-7 shadow-[0_10px_24px_rgba(84,131,179,0.1)]" aria-labelledby="capabilities-heading">
-            <h2 id="capabilities-heading" className="text-2xl font-bold">Capabilities</h2>
-            <ul className="mt-5 space-y-3">
-              {capabilities.map((item) => (
-                <li key={item} className="rounded-xl border border-[#7DA0CA]/25 bg-white px-4 py-3 text-slate-700">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <div className="space-y-6">
-            <section className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-6 shadow-[0_10px_24px_rgba(84,131,179,0.1)]" aria-labelledby="outcomes-heading">
-              <h2 id="outcomes-heading" className="text-xl font-semibold">Business Outcomes</h2>
-              <ul className="mt-4 space-y-3">
-                {outcomes.map((item) => (
-                  <li key={item} className="rounded-xl border border-[#7DA0CA]/25 bg-[#f8fcff] px-3 py-2 text-sm text-slate-700">
+            <div className="absolute -bottom-6 left-6 right-6 rounded-2xl border border-white/15 bg-[#0a2348]/90 p-4 shadow-2xl backdrop-blur sm:left-auto sm:w-72">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-sky-300">Ideal for</p>
+              <ul className="mt-2 space-y-1.5">
+                {idealFor.slice(0, 3).map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-white">
+                    <CheckIcon className="h-4 w-4 shrink-0 text-emerald-300" />
                     {item}
                   </li>
                 ))}
               </ul>
-            </section>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-[#7DA0CA]/30 bg-white p-4">
-                <Image src="/window.svg" alt="Service visual 1" width={72} height={72} className="h-14 w-14" />
-                <p className="mt-3 text-sm font-semibold text-[#052659]">Execution Visibility</p>
-              </div>
-              <div className="rounded-2xl border border-[#7DA0CA]/30 bg-white p-4">
-                <Image src="/globe.svg" alt="Service visual 2" width={72} height={72} className="h-14 w-14" />
-                <p className="mt-3 text-sm font-semibold text-[#052659]">Scalable Delivery</p>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
+        }
+      />
 
-      <section className="bg-[#f8fcff] py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl">Frequently Asked Questions About This Service</h2>
-            <p className="mt-4 text-lg text-slate-600">These direct answers help visitors, search engines, and AI assistants understand the service clearly.</p>
-          </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {faqs.map((item) => (
-              <article key={item.question} className="rounded-2xl border border-[#7DA0CA]/30 bg-white p-6">
-                <h3 className="text-xl font-semibold">{item.question}</h3>
-                <p className="mt-3 text-slate-600">{item.answer}</p>
-              </article>
+      <section id="capabilities" className="scroll-mt-20 bg-white py-20 sm:py-28">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="What we deliver"
+            title="Everything you need, built by one team"
+            description="Pick a single piece or let us handle the full journey from idea to launch and beyond."
+          />
+          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((item, i) => (
+              <li
+                key={item.title}
+                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-[0_24px_50px_rgba(2,16,36,0.08)]"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[var(--primary)] to-sky-300 transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="text-sm font-extrabold text-sky-300 transition-colors group-hover:text-[var(--primary)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 text-lg font-bold">{item.title}</h3>
+                <p className="mt-2 text-[15px] leading-7 text-[var(--text-body)]">{item.text}</p>
+              </li>
             ))}
-          </div>
-          <p className="mt-8 text-center text-slate-600">
-            Need a related solution? Explore <Link href={routes.servicesAutomation} className="font-semibold text-[#052659] underline underline-offset-4">custom integrations</Link>,{" "}
-            <Link href={routes.servicesWeb} className="font-semibold text-[#052659] underline underline-offset-4">web development</Link>, or{" "}
-            <Link href={routes.contact} className="font-semibold text-[#052659] underline underline-offset-4">contact our team</Link>.
-          </p>
+          </ul>
         </div>
       </section>
 
+      <section className="relative isolate overflow-hidden bg-[var(--navy)] py-20 sm:py-24">
+        <div className="pointer-events-none absolute inset-0 -z-10 dark-grid" />
+        <div className="pointer-events-none absolute -right-40 top-0 -z-10 h-96 w-96 rounded-full bg-[#0077b6]/30 blur-[120px]" />
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+          <div>
+            <SectionHeading
+              tone="dark"
+              align="left"
+              eyebrow="The results"
+              title="What changes for your business"
+              description="Software is only worth building if it moves the numbers that matter. Here's what our clients aim for, and what we design around."
+            />
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sky-300">A great fit if you are</p>
+              <ul className="mt-3 space-y-2">
+                {idealFor.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-200">
+                    <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {outcomes.map((item) => (
+              <li
+                key={item.title}
+                className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] p-6 transition hover:border-sky-400/40"
+              >
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-400/15 text-sky-300">
+                  <CheckIcon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 text-base font-bold text-white">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <ProcessSection />
+
+      <section className="border-y border-slate-200 bg-slate-50 py-14">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-4 text-center sm:px-6 lg:flex-row lg:justify-between lg:px-8 lg:text-left">
+          <div className="shrink-0">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--primary)]">Technology</p>
+            <h2 className="mt-2 text-xl font-bold sm:text-2xl">Tools we use for this service</h2>
+          </div>
+          <ul className="flex flex-wrap justify-center gap-2 lg:justify-end">
+            {stack.map((tool) => (
+              <li key={tool} className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
+                {tool}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-8">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeading
+              align="left"
+              eyebrow="FAQ"
+              title="Common questions"
+              description="Have a question that isn't covered here? Ask us in the form below."
+            />
+            <div className="mt-10">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Related services</p>
+              <ul className="mt-4 space-y-3">
+                {related.map((service) => {
+                  const Icon = service.icon;
+                  return (
+                    <li key={service.href}>
+                      <Link
+                        href={service.href}
+                        className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-sky-200 hover:shadow-[0_16px_40px_rgba(2,16,36,0.06)]"
+                      >
+                        <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-[var(--primary)]">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <span className="flex-1">
+                          <span className="block text-sm font-bold text-[var(--navy)]">{service.title}</span>
+                          <span className="block text-xs text-slate-500">{service.text}</span>
+                        </span>
+                        <ArrowRightIcon className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-[var(--primary)]" />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+          <FaqAccordion items={faqs} />
+        </div>
+      </section>
+
+      <CTASection />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 }

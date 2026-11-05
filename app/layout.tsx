@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import type { Viewport } from "next";
 import { Roboto_Mono, Rubik } from "next/font/google";
-import Script from "next/script";
 import { PWAController } from "@/components/pwa/PWAController";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { localBusinessSchema, organizationSchema, reviewSchema, siteConfig, websiteSchema } from "@/lib/site";
 import "./globals.css";
 
-const rubik = Rubik({
-  variable: "--font-rubik",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 });
 
-const robotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono",
+// Handwritten accent used sparingly, e.g. the footer headline.
+const caveat = Caveat({
+  variable: "--font-script",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["600"],
 });
 
 export const metadata: Metadata = {
@@ -83,18 +83,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XEHZW4RXJZ" />
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XEHZW4RXJZ');
-        `}
-      </Script>
+    <html lang="en">
       <body className={`${rubik.variable} ${robotoMono.variable} antialiased`}>
-        <StructuredData data={[organizationSchema(), localBusinessSchema(), websiteSchema(), reviewSchema()]} />
+        <StructuredData data={[organizationSchema(), websiteSchema()]} />
         {children}
         <PWAController />
       </body>

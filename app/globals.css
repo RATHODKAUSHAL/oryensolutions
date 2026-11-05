@@ -6,6 +6,9 @@
   --accent: #0077b6;
   --accent-light: #e0f2fe;
   --highlight: #0077b6;
+  --navy: #021024;
+  --navy-2: #052659;
+  --sky: #c1e8ff;
   --white: #ffffff;
   --off-white: #f8fafc;
   --gray-100: #f8fafc;
@@ -13,8 +16,8 @@
   --gray-500: #6b7280;
   --gray-700: #374151;
   --dark: #0f172a;
-  --text-body: #4b5563;
-  --text-heading: #111827;
+  --text-body: #475569;
+  --text-heading: #0b1b33;
   --background: #ffffff;
   --foreground: var(--text-heading);
 }
@@ -22,29 +25,37 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-rubik);
+  --color-brand: var(--primary);
+  --color-brand-dark: var(--primary-dark);
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+  --color-sky: var(--sky);
+  --font-sans: var(--font-jakarta);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-rubik), sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-rubik), sans-serif;
-  color: var(--text-heading);
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+  }
 }
 
 .label-font {
-  font-family: var(--font-rubik), sans-serif;
-}
-
-.hero-title {
-  font-family: var(--font-roboto-mono), monospace;
+  font-family: var(--font-jakarta), system-ui, sans-serif;
 }
 
 .hero-grid {
@@ -54,102 +65,46 @@ h4 {
   background-size: 88px 88px;
 }
 
-.glow-pulse {
-  animation: glowPulse 2.5s ease-in-out infinite;
+/* Faint grid used on dark sections, faded out towards the edges. */
+.dark-grid {
+  background-image:
+    linear-gradient(to right, rgba(193, 232, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(193, 232, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
 }
 
-.marquee-track {
-  animation: marqueeLeft 30s linear infinite;
+.text-gradient {
+  background: linear-gradient(90deg, #7dd3fc 0%, #38bdf8 45%, #c1e8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.marquee-track-reverse {
-  animation: marqueeRight 30s linear infinite;
-}
-
-.marquee-wrap:hover .marquee-track,
-.marquee-wrap:hover .marquee-track-reverse {
-  animation-play-state: paused;
-}
-
-.services-marquee-track {
-  animation: servicesMarquee 22s linear infinite;
-  will-change: transform;
-}
-
-.testimonials-marquee-track {
-  animation: testimonialMarquee 38s linear infinite;
-  will-change: transform;
-}
-
-.testimonials-vertical-track {
-  animation: testimonialsVertical 22s linear infinite;
-  will-change: transform;
-}
-
-.testimonials-vertical-track-slow {
-  animation-duration: 26s;
-}
-
-.testimonials-vertical-track-fast {
-  animation-duration: 18s;
+.fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .skeleton-shimmer {
   animation: skeletonShimmer 1.8s linear infinite;
 }
 
-@keyframes glowPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 rgba(37, 99, 235, 0.25);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(37, 99, 235, 0.45);
-  }
+details > summary {
+  list-style: none;
 }
 
-@keyframes marqueeLeft {
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes fadeUp {
   from {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translateY(16px);
   }
   to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes marqueeRight {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes servicesMarquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
-@keyframes testimonialMarquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
-@keyframes testimonialsVertical {
-  from {
+    opacity: 1;
     transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50%);
   }
 }
 
@@ -163,12 +118,11 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .glow-pulse,
-  .marquee-track,
-  .marquee-track-reverse,
-  .services-marquee-track,
-  .testimonials-marquee-track,
-  .testimonials-vertical-track,
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-up,
   .skeleton-shimmer {
     animation: none !important;
   }

@@ -34,7 +34,8 @@ export function CareersClient() {
       setStatus("Resume submitted successfully. We will contact you when relevant openings are available.");
       return;
     }
-    setStatus("Resume submission failed. Please try again.");
+    const { error } = await res.json().catch(() => ({}));
+    setStatus(error ?? "Resume submission failed. Please try again.");
   }
 
   return (

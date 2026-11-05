@@ -3,25 +3,26 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { AboutSection } from "@/components/sections/AboutSection";
 import { CTASection } from "@/components/sections/CTASection";
-import { DualSectorSection } from "@/components/sections/DualSectorSection";
+import { EngagementSection } from "@/components/sections/EngagementSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { StartupSection } from "@/components/sections/StartupSection";
+import { StatsBar } from "@/components/sections/StatsBar";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { breadcrumbList, buildMetadata, faqSchema, routes, serviceSchema, webPageSchema } from "@/lib/site";
+import { breadcrumbList, buildMetadata, faqSchema, routes, serviceSchema } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Web Development Company India | AI Automation, BIM & Custom Software",
+  title: "Web Development, BIM Automation & Custom Software Services",
   description:
-    "OryenSolutions is a web development company in India delivering SaaS development, CRM development, AI automation, BIM automation, Tekla plugin development, API integration services, and custom software solutions for global businesses.",
+    "OryenSolutions delivers web development, SaaS, CRM, BIM automation, and software integration services for businesses that need faster delivery and scalable systems.",
   path: routes.home,
-  keywords: ["custom software development company", "Tekla automation company", "software integration services", "AI automation agency"],
+  keywords: ["custom software development", "Tekla automation company", "software integration company"],
 });
 
 const homeFaqs = [
@@ -78,12 +79,15 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      {/* <StatsSection /> */}
       <DualSectorSection />
       <ServicesSection />
-      <ProcessSection />
-      <IntegrationsSection />
+      <IndustriesSection />
+      <StartupSection />
       <WhyChooseUs />
-      <TestimonialsSection />
+      <ProcessSection />
+      {/* <FeaturesSection /> */}
+      <IntegrationsSection />
       <FAQSection />
       <CTASection />
       <Footer />

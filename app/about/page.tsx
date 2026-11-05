@@ -1,64 +1,80 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { CTASection } from "@/components/sections/CTASection";
 import { DualSectorSection } from "@/components/sections/DualSectorSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
-import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes, webPageSchema } from "@/lib/site";
+import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes } from "@/lib/site";
 
-const agilePractices = [
+const values = [
   {
-    title: "Daily Alignment",
-    text: "Short daily syncs help engineers, designers, and stakeholders remove blockers quickly and keep priorities aligned.",
-    image: "/globe.svg",
+    title: "Ownership",
+    text: "We treat every project like our own product and take responsibility for the result, not just the code.",
+    icon: TargetIcon,
+    tone: "from-sky-300 to-[#0077b6]",
+    edge: "#03406b",
   },
   {
-    title: "Sprint Reviews",
-    text: "Weekly demos validate outcomes early so we can refine scope fast and avoid late-stage rework.",
-    image: "/window.svg",
+    title: "Transparency",
+    text: "Honest estimates, weekly demos and open communication. You always know where things stand.",
+    icon: EyeIcon,
+    tone: "from-indigo-300 to-indigo-600",
+    edge: "#2a2a7a",
   },
   {
-    title: "Iteration Planning",
-    text: "Each iteration turns feedback into actionable tasks, helping teams improve workflow quality release after release.",
-    image: "/next.svg",
+    title: "Craft",
+    text: "Clean, well-tested code and thoughtful design that stays easy to change as your business grows.",
+    icon: SparklesIcon,
+    tone: "from-cyan-300 to-teal-600",
+    edge: "#0b4a4a",
   },
-] as const;
-
-const impact = [
-  "Reduced delivery time by replacing big-bang releases with short sprint cycles",
-  "Lower risk through frequent validation and early issue detection",
-  "Higher transparency across planning, development, and stakeholder communication",
-  "Improved team efficiency through better prioritization and decision velocity",
+  {
+    title: "Partnership",
+    text: "We stay with you after launch, improving the product as you learn what your users need.",
+    icon: UsersIcon,
+    tone: "from-emerald-300 to-emerald-600",
+    edge: "#0b4d34",
+  },
 ] as const;
 
 const aboutFaqs = [
   {
-    question: "What does OryenSolutions do?",
+    question: "What does Oryen Solutions do?",
     answer:
-      "OryenSolutions builds custom web platforms, SaaS products, CRM systems, BIM automation tools, and software integrations with an agile engineering approach.",
+      "Oryen Solutions builds custom web platforms, mobile apps, CRM and ERP systems, SaaS products, AI-powered automation and BIM automation tools, using an agile, founder-led delivery approach.",
   },
   {
-    question: "Why does OryenSolutions use agile engineering?",
+    question: "Where is Oryen Solutions based?",
     answer:
-      "Agile engineering helps the team validate progress early, reduce rework, and keep delivery aligned with real business priorities throughout the project lifecycle.",
+      "We're based in Ahmedabad, Gujarat, India, and work with startups and businesses in the US and around the world through remote collaboration.",
+  },
+  {
+    question: "Why does Oryen Solutions use agile engineering?",
+    answer:
+      "Agile lets us validate progress early, reduce rework and keep delivery aligned with real business priorities, with a working demo every week.",
+  },
+  {
+    question: "Who will I work with on my project?",
+    answer:
+      "You work directly with the founders and senior engineers who scope, design and build your project. There are no hand-offs to account managers.",
   },
 ] as const;
 
 export const metadata: Metadata = buildMetadata({
-  title: "About OryenSolutions",
+  title: "About Oryen Solutions",
   description:
-    "Learn about OryenSolutions, an Ahmedabad-based engineering team focused on agile software delivery, BIM automation, and practical digital transformation.",
+    "Oryen Solutions is a founder-led software studio in Ahmedabad, India, building web, mobile, CRM, SaaS and BIM automation solutions for clients in the US and worldwide.",
   path: routes.about,
-  keywords: ["about OryenSolutions", "Ahmedabad software team", "agile engineering company"],
+  keywords: ["about Oryen Solutions", "Ahmedabad software company", "founder-led software studio"],
 });
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-[#021024]">
+    <main className="min-h-screen bg-white text-[var(--text-heading)]">
       <StructuredData
         data={[
           organizationSchema(),
@@ -78,80 +94,120 @@ export default function AboutPage() {
       />
       <Navbar />
 
-      <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(84,131,179,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(84,131,179,0.1)_1px,transparent_1px)] bg-[size:88px_88px]" />
-        <div className="relative mx-auto w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-center items-center">
-            <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#052659]">
-              About Us
+      <PageHero
+        breadcrumb="About us"
+        eyebrow="About Oryen Solutions"
+        title={
+          <>
+            Engineers who build software <span className="text-gradient">like it&apos;s our own</span>
+          </>
+        }
+        description="We're a founder-led software studio based in Ahmedabad, India, partnering with startups and businesses in the US and worldwide to turn ideas and messy workflows into reliable software."
+        primaryCta={{ label: "Work with us", href: "#contact" }}
+        secondaryCta={{ label: "See how we work", href: routes.agileMindset }}
+        aside={
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur sm:col-span-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sky-300">Our mission</p>
+              <p className="mt-3 text-xl font-bold leading-snug text-white">
+                Help every business run on software that fits the way it actually works.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sky-300">What we build</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">Web & mobile apps, CRMs, SaaS products, AI automation and BIM tools.</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sky-300">Who we serve</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">Startups and growing businesses across 10+ industries.</p>
+            </div>
+          </div>
+        }
+      />
+
+      <StatsBar />
+
+      <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-8">
+          <SectionHeading
+            align="left"
+            eyebrow="Our story"
+            title="Why we started Oryen"
+            description={
+              <>
+                Too many businesses are stuck with generic tools that don&apos;t fit, spreadsheets that break as they grow, or
+                agencies that disappear after launch.
+                <br />
+                <br />
+                We started Oryen Solutions to be a different kind of partner: a small, senior team that learns how your business
+                works, builds exactly what you need, and stays around to make it better.
+              </>
+            }
+          />
+          <div className="relative rounded-[2rem] bg-slate-50 p-6 sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--primary)]">Our vision</p>
+            <p className="mt-3 text-2xl font-extrabold leading-snug text-[var(--navy)] sm:text-3xl">
+              To be the engineering partner founders and business owners trust to build what&apos;s next.
             </p>
-            <h1 className="mt-5 text-center text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">Building Better Workflows Through Agile Engineering</h1>
-            <p className="mt-5 text-center text-lg leading-8 text-slate-600">
-              OryenSolutions combines agile software delivery with deep engineering domain understanding. Our approach improves workflow visibility,
-              reduces manual effort, and helps clients deliver faster with confidence.
-            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {["Founder-led, senior team", "Agile delivery, weekly demos", "Long-term product support", "US & global clients"].map((item) => (
+                <p key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700">
+                  {item}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="bg-slate-50 py-20 sm:py-28">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl">How We Use Agile to Reduce Delivery Time</h2>
-            <p className="mt-4 text-lg text-slate-600">
-              We apply agile methods in practical ways to improve execution speed and reduce workflow friction for every project.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {agilePractices.map((item) => (
-              <article key={item.title} className="rounded-3xl border border-[#7DA0CA]/35 bg-[#f8fcff] p-6 shadow-[0_10px_24px_rgba(84,131,179,0.1)]">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-[#7DA0CA]/35 bg-white">
-                  <Image src={item.image} alt={item.title} width={32} height={32} className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="mt-3 text-slate-600">{item.text}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 rounded-3xl border border-[#7DA0CA]/35 bg-[#f8fcff] p-7 shadow-[0_10px_24px_rgba(84,131,179,0.1)]">
-            <h3 className="text-2xl font-semibold">What This Means for Client Workflows</h3>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {impact.map((item) => (
-                <li key={item} className="rounded-xl border border-[#7DA0CA]/25 bg-white px-4 py-3 text-slate-700">
-                  {item}
+          <SectionHeading eyebrow="Our values" title="What we stand for" description="The principles behind every project, sprint and line of code." />
+          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map((value) => {
+              const Icon = value.icon;
+              return (
+                <li
+                  key={value.title}
+                  className="rounded-3xl border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(2,16,36,0.08)]"
+                >
+                  <span
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${value.tone} text-white`}
+                    style={{ boxShadow: `inset 0 1px 0 rgba(255,255,255,0.45), 0 5px 0 ${value.edge}, 0 14px 24px rgba(2,16,36,0.2)` }}
+                  >
+                    <Icon className="h-7 w-7 drop-shadow" />
+                  </span>
+                  <h3 className="mt-6 text-lg font-bold">{value.title}</h3>
+                  <p className="mt-2 text-[15px] leading-7 text-[var(--text-body)]">{value.text}</p>
                 </li>
-              ))}
-            </ul>
-          </div>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
       <DualSectorSection />
-      <ProcessSection />
-      <IntegrationsSection />
-      <section className="bg-[#f8fcff] py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl">What Businesses Ask About OryenSolutions</h2>
-            <p className="mt-4 text-lg text-slate-600">Short answers make it easier for search engines and AI systems to understand how we work.</p>
+      <WhyChooseUs />
+
+      <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-8">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeading align="left" eyebrow="FAQ" title="Getting to know us" />
+            <Link
+              href={routes.agileMindset}
+              className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)]"
+            >
+              Read about our agile approach
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-          <div className="mt-10 space-y-4">
-            {aboutFaqs.map((item) => (
-              <article key={item.question} className="rounded-2xl border border-[#7DA0CA]/35 bg-white p-6 shadow-[0_10px_24px_rgba(84,131,179,0.08)]">
-                <h3 className="text-xl font-semibold">{item.question}</h3>
-                <p className="mt-3 text-slate-600">{item.answer}</p>
-              </article>
-            ))}
-          </div>
-          <p className="mt-8 text-center text-slate-600">
-            Explore our <Link href={routes.agileMindset} className="font-semibold text-[#052659] underline underline-offset-4">agile mindset</Link> or review our{" "}
-            <Link href={routes.servicesWeb} className="font-semibold text-[#052659] underline underline-offset-4">digital delivery services</Link>.
-          </p>
+          <FaqAccordion items={aboutFaqs} />
         </div>
       </section>
+
+      <CTASection />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 }
