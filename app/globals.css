@@ -18,6 +18,9 @@
   --dark: #0f172a;
   --text-body: #475569;
   --text-heading: #0b1b33;
+  /* Secondary accent used in gradients and highlights alongside the brand blue. */
+  --violet: #8b5cf6;
+  --violet-light: #a78bfa;
   --background: #ffffff;
   --foreground: var(--text-heading);
 }
@@ -75,7 +78,15 @@ html {
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #7dd3fc 0%, #38bdf8 45%, #c1e8ff 100%);
+  background: linear-gradient(90deg, #7dd3fc 0%, #38bdf8 40%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient text for light backgrounds (brand blue into violet). */
+.text-gradient-dark {
+  background: linear-gradient(90deg, #0077b6 0%, #0ea5e9 45%, #8b5cf6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -117,13 +128,257 @@ details > summary::-webkit-details-marker {
   }
 }
 
+
+/* ---------- Hero visuals ---------- */
+
+/* Lightweight CSS sphere: the hero visual before the WebGL globe loads, and on phones. */
+.hero-orb {
+  background:
+    radial-gradient(circle at 32% 28%, rgba(193, 232, 255, 0.55), transparent 32%),
+    radial-gradient(circle at 70% 75%, rgba(139, 92, 246, 0.45), transparent 45%),
+    radial-gradient(circle at 50% 50%, #0b3a75 0%, #061a38 62%, #030d1f 100%);
+  box-shadow:
+    inset -30px -40px 80px rgba(2, 16, 36, 0.85),
+    inset 20px 20px 60px rgba(125, 211, 252, 0.18),
+    0 0 90px rgba(56, 189, 248, 0.25);
+}
+
+.hero-orb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: radial-gradient(rgba(193, 232, 255, 0.35) 1px, transparent 1.4px);
+  background-size: 12px 12px;
+  mask-image: radial-gradient(circle at 40% 40%, black 20%, transparent 70%);
+  opacity: 0.6;
+}
+
+.hero-chip {
+  animation: heroFloat 7s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+/* Slow-moving colour fields behind the hero; transform-only so it stays on the compositor. */
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  will-change: transform;
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+
+@keyframes auroraDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-5%, -3%, 0) scale(0.96);
+  }
+}
+
+/* ---------- Technology marquee ---------- */
+
+.tech-marquee-row {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  animation: techMarquee 42s linear infinite;
+}
+
+.tech-marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 48s;
+}
+
+.tech-marquee:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes techMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* The track holds two copies, so moving by half loops seamlessly. */
+    transform: translate3d(calc(-50% - 0.5rem), 0, 0);
+  }
+}
+
+/* ---------- Loading feedback ---------- */
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 40%, #0a2a57 0%, var(--navy) 65%);
+  animation: introOut 0.35s ease 0.6s forwards;
+}
+
+[data-intro="seen"] .intro-loader {
+  display: none;
+}
+
+.intro-loader-inner {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  animation: introIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.intro-loader-ring {
+  stroke-dasharray: 164;
+  stroke-dashoffset: 164;
+  transform-origin: center;
+  animation: introRing 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.intro-loader-core {
+  transform-origin: center;
+  animation: introCore 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+.intro-loader-word {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.intro-loader-word span {
+  margin-left: 0.35rem;
+  color: #7dd3fc;
+}
+
+.intro-loader-bar {
+  width: 140px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.intro-loader-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  transform-origin: left;
+  animation: introBar 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes introIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+}
+
+@keyframes introRing {
+  to {
+    stroke-dashoffset: 0;
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes introCore {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes introBar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes introOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.route-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 90;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+}
+
+.route-progress.is-loading {
+  opacity: 1;
+  transform: scaleX(0.85);
+  transition: transform 6s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.15s;
+}
+
+.route-progress.is-done {
+  opacity: 0;
+  transform: scaleX(1);
+  transition: transform 0.25s ease, opacity 0.3s ease 0.2s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .fade-up,
-  .skeleton-shimmer {
+  .skeleton-shimmer,
+  .hero-chip,
+  .aurora,
+  .tech-marquee-track {
     animation: none !important;
+  }
+
+  /* Static logo wall instead of a moving marquee. */
+  .tech-marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-inline: 1rem;
+  }
+
+  .tech-marquee-copy,
+  .tech-marquee-row[aria-hidden="true"] {
+    display: none;
+  }
+
+  .tech-marquee-row {
+    mask-image: none;
+  }
+
+  .intro-loader {
+    display: none;
   }
 }

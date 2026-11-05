@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "OryenSolutions",
     short_name: "Oryen",
-    description: "Web development, BIM automation, and custom software solutions from OryenSolutions.",
+    description: "Web development, mobile apps, AI automation, and custom software solutions from OryenSolutions.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 const benefits = [
   "Real project ownership with direct leadership collaboration",
   "Flexible and outcome-driven work culture",
-  "Continuous learning across web, BIM, and automation domains",
+  "Continuous learning across web, mobile, and automation domains",
   "Competitive compensation and growth-oriented environment",
 ] as const;
 
@@ -51,7 +51,7 @@ export function CareersClient() {
             </p>
             <h1 className="mt-5 text-4xl font-bold sm:text-5xl">Why Work With OryenSolutions?</h1>
             <p className="mt-4 text-lg text-slate-600">
-              Explore careers at OryenSolutions and connect with a team working across modern web development, BIM automation, and integration engineering.
+              Explore careers at OryenSolutions and connect with a team working across modern web development, mobile apps, and integration engineering.
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ export function CareersClient() {
                 <h3 className="mt-4 text-xl font-semibold">We are not hiring at the moment</h3>
                 <p className="mt-3 text-slate-600">
                   We currently do not have active job openings. However, we are always interested in hearing from professionals in web development,
-                  BIM automation, and software integration.
+                  mobile apps, and software integration.
                 </p>
                 <p className="mt-3 text-slate-600">Submit your resume below and we will contact you when a relevant role becomes available.</p>
 

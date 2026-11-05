@@ -11,7 +11,6 @@ const needs = [
   "CRM / ERP system",
   "SaaS product",
   "AI & automation",
-  "BIM / Tekla automation",
   "Something else",
 ] as const;
 

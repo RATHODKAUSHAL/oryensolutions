@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import type { Viewport } from "next";
-import { Roboto_Mono, Rubik } from "next/font/google";
+import { Caveat, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
+import { IntroLoader } from "@/components/loading/IntroLoader";
+import { RouteProgress } from "@/components/loading/RouteProgress";
 import { PWAController } from "@/components/pwa/PWAController";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { localBusinessSchema, organizationSchema, reviewSchema, siteConfig, websiteSchema } from "@/lib/site";
+import { localBusinessSchema, organizationSchema, siteConfig, websiteSchema } from "@/lib/site";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   manifest: "/manifest.webmanifest",
   title: {
-    default: "OryenSolutions | Web Development, BIM Automation & Custom Software",
+    default: "OryenSolutions | Web, Mobile, AI Automation & Custom Software",
     template: "%s | OryenSolutions",
   },
   description: siteConfig.description,
@@ -42,7 +45,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "OryenSolutions | Web Development, BIM Automation & Custom Software",
+    title: "OryenSolutions | Web, Mobile, AI Automation & Custom Software",
     description: siteConfig.description,
     images: [
       {
@@ -55,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OryenSolutions | Web Development, BIM Automation & Custom Software",
+    title: "OryenSolutions | Web, Mobile, AI Automation & Custom Software",
     description: siteConfig.description,
     images: ["/Assets/Oryen_Solutions.png"],
   },
@@ -83,9 +86,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${rubik.variable} ${robotoMono.variable} antialiased`}>
-        <StructuredData data={[organizationSchema(), websiteSchema()]} />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${jakarta.variable} ${caveat.variable} antialiased`}>
+        <IntroLoader />
+        <RouteProgress />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-XEHZW4RXJZ" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XEHZW4RXJZ');
+          `}
+        </Script>
+        <StructuredData data={[organizationSchema(), localBusinessSchema(), websiteSchema()]} />
         {children}
         <PWAController />
       </body>

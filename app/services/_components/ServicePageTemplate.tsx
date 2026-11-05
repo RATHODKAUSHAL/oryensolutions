@@ -4,7 +4,14 @@ import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { breadcrumbList, faqSchema, routes, serviceSchema } from "@/lib/site";
+import { CTASection } from "@/components/sections/CTASection";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { PageHero } from "@/components/sections/PageHero";
+import { ProcessSection } from "@/components/sections/ProcessSection";
+import { SectionHeading } from "@/components/sections/SectionHeading";
+import { ArrowRightIcon, CheckIcon, CodeIcon, PlugIcon } from "@/components/ui/icons";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { breadcrumbList, faqSchema, routes, serviceSchema, webPageSchema } from "@/lib/site";
 
 type ServicePageTemplateProps = {
   badge: string;
@@ -33,12 +40,6 @@ const allServices = [
     href: routes.servicesAutomation,
     icon: PlugIcon,
   },
-  {
-    title: "BIM Automation & Tekla Development",
-    text: "Tekla plugins, drawing automation and Revit tools.",
-    href: routes.servicesBim,
-    icon: BuildingIcon,
-  },
 ] as const;
 
 export function ServicePageTemplate({
@@ -64,6 +65,11 @@ export function ServicePageTemplate({
             { name: "Home", path: routes.home },
             { name: title, path: slug },
           ]),
+          webPageSchema({
+            name: title,
+            description,
+            path: slug,
+          }),
           serviceSchema({
             name: title,
             description,

@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# form submissions & uploaded resumes (contain PII)
+/data/
+
+# generated Prisma client (rebuilt by `prisma generate` on install)
+/lib/generated/
+
+# local SQLite database
+/prisma/*.db
+/prisma/*.db-journal

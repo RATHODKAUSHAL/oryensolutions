@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}${routes.careers}`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${siteConfig.url}${routes.contact}`, lastModified, changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteConfig.url}${routes.services}`, lastModified, changeFrequency: "weekly", priority: 0.92 },
-    { url: `${siteConfig.url}${routes.servicesBim}`, lastModified, changeFrequency: "monthly", priority: 0.85 },
     { url: `${siteConfig.url}${routes.servicesWeb}`, lastModified, changeFrequency: "monthly", priority: 0.85 },
     { url: `${siteConfig.url}${routes.servicesAutomation}`, lastModified, changeFrequency: "monthly", priority: 0.85 },
     ...landingPages.map((page) => ({

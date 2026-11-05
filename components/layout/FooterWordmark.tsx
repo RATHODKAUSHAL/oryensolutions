@@ -31,19 +31,30 @@ export function FooterWordmark() {
     let dotSize = 2;
     let frame = 0;
     let running = false;
+    let disposed = false;
     const pointer = { x: -9999, y: -9999, active: false };
 
+    // Returns false when the container has no size yet (hidden, collapsed or not laid out);
+    // the ResizeObserver calls build again once it does.
     const build = () => {
+      if (disposed) return false;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = wrap.clientWidth;
-      gap = width < 640 ? 3 : width < 1024 ? 4 : 5;
-      dotSize = gap * 0.55;
+      const nextWidth = Math.floor(wrap.clientWidth);
 
       // Fit the text to the container width.
       const probe = document.createElement("canvas").getContext("2d")!;
       probe.font = `800 100px ${family}`;
-      const fontSize = (100 * width) / probe.measureText(TEXT).width;
-      height = Math.ceil(fontSize * 0.78);
+      const textWidth = probe.measureText(TEXT).width;
+      const fontSize = textWidth > 0 ? (100 * nextWidth) / textWidth : 0;
+      const nextHeight = Math.ceil(fontSize * 0.78);
+
+      // getImageData throws on a 0×0 area, so wait for real dimensions.
+      if (nextWidth < 1 || nextHeight < 1) return false;
+
+      width = nextWidth;
+      height = nextHeight;
+      gap = width < 640 ? 3 : width < 1024 ? 4 : 5;
+      dotSize = gap * 0.55;
 
       canvas.width = width * dpr;
       canvas.height = height * dpr;
@@ -67,6 +78,11 @@ export function FooterWordmark() {
         }
       }
       draw();
+      return true;
+    };
+
+    const rebuild = () => {
+      if (build()) setReady(true);
     };
 
     const draw = () => {
@@ -130,18 +146,17 @@ export function FooterWordmark() {
     let resizeTimer: ReturnType<typeof setTimeout>;
     const resizeObserver = new ResizeObserver(() => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(build, 100);
+      resizeTimer = setTimeout(rebuild, 100);
     });
+    resizeObserver.observe(wrap);
 
-    document.fonts.ready.then(() => {
-      build();
-      setReady(true);
-      resizeObserver.observe(wrap);
-    });
+    // Build once the web font has loaded so the dots sample the real glyphs.
+    document.fonts.ready.then(rebuild);
     canvas.addEventListener("pointermove", onMove);
     canvas.addEventListener("pointerleave", onLeave);
 
     return () => {
+      disposed = true;
       cancelAnimationFrame(frame);
       clearTimeout(resizeTimer);
       resizeObserver.disconnect();

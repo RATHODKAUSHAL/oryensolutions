@@ -7,9 +7,9 @@ import { breadcrumbList, buildMetadata, faqSchema, routes, webPageSchema } from 
 export const metadata: Metadata = buildMetadata({
   title: "Careers at OryenSolutions",
   description:
-    "Learn about careers at OryenSolutions and submit your resume for future opportunities in web development, BIM automation, and software integration.",
+    "Learn about careers at OryenSolutions and submit your resume for future opportunities in web development, mobile apps, and software integration.",
   path: routes.careers,
-  keywords: ["software careers Ahmedabad", "BIM automation jobs", "web development careers"],
+  keywords: ["software careers Ahmedabad", "software developer jobs India", "web development careers"],
 });
 
 const careerFaqs = [
@@ -21,7 +21,7 @@ const careerFaqs = [
   {
     question: "What roles fit OryenSolutions best?",
     answer:
-      "The strongest fit is for candidates with experience in web development, BIM automation, custom integrations, and practical delivery in fast-moving engineering environments.",
+      "The strongest fit is for candidates with experience in web development, mobile apps, custom integrations, and practical delivery in fast-moving engineering environments.",
   },
 ] as const;
 
@@ -36,7 +36,7 @@ export default function CareersPage() {
           ]),
           webPageSchema({
             name: "Careers at OryenSolutions",
-            description: "Career page for OryenSolutions with resume submission for future software, BIM, and automation roles.",
+            description: "Career page for OryenSolutions with resume submission for future software and automation roles.",
             path: routes.careers,
           }),
           faqSchema([...careerFaqs]),

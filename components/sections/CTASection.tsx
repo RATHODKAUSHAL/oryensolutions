@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 import { QuickContactForm } from "@/components/sections/QuickContactForm";
-import { ChatIcon, GlobeIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
-import { siteConfig } from "@/lib/site";
+import { ArrowRightIcon, ChatIcon, CheckIcon, GlobeIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
+import { routes, siteConfig } from "@/lib/site";
 
 const nextSteps = [
   "Tell us about your idea or problem",
@@ -8,7 +10,14 @@ const nextSteps = [
   "Receive a clear scope, timeline and estimate",
 ] as const;
 
-export function CTASection() {
+const promises = ["Free, no-obligation consultation", "Clear scope, timeline and estimate", "Reply by email with next steps"] as const;
+
+type CTASectionProps = {
+  /** "form" shows the quick enquiry form; "link" sends visitors to the full contact page instead. */
+  variant?: "form" | "link";
+};
+
+export function CTASection({ variant = "form" }: CTASectionProps) {
   return (
     <section id="contact" className="scroll-mt-20 bg-white py-20 sm:py-24">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -62,7 +71,46 @@ export function CTASection() {
               </div>
             </div>
 
-            <QuickContactForm />
+            {variant === "form" ? (
+              <QuickContactForm />
+            ) : (
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-[0_30px_60px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-9">
+                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-violet-500/25 blur-3xl" />
+                <p className="relative text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">Start your project</p>
+                <h3 className="relative mt-3 text-2xl font-bold text-white sm:text-3xl">Tell us what you want to build</h3>
+                <p className="relative mt-3 text-[15px] leading-7 text-slate-300">
+                  Share your idea, budget and timeline on our contact page and we&apos;ll take it from there.
+                </p>
+                <ul className="relative mt-6 space-y-3">
+                  {promises.map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm text-slate-200">
+                      <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/15">
+                        <CheckIcon className="h-3.5 w-3.5 text-emerald-300" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="relative mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href={routes.contact}
+                    className="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-sky-400 px-7 py-3.5 text-sm font-bold text-[var(--navy)] shadow-[0_14px_34px_rgba(56,189,248,0.35)] transition hover:-translate-y-0.5 hover:bg-sky-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                  >
+                    Contact us
+                    <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                  <a
+                    href="https://wa.me/919265885370"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+                  >
+                    <ChatIcon className="h-4 w-4" />
+                    WhatsApp us
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

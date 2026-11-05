@@ -5,10 +5,14 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { CTASection } from "@/components/sections/CTASection";
-import { DualSectorSection } from "@/components/sections/DualSectorSection";
-import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes } from "@/lib/site";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { PageHero } from "@/components/sections/PageHero";
+import { SectionHeading } from "@/components/sections/SectionHeading";
+import { StatsBar } from "@/components/sections/StatsBar";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { ArrowRightIcon, EyeIcon, SparklesIcon, TargetIcon, UsersIcon } from "@/components/ui/icons";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes, webPageSchema } from "@/lib/site";
 
 const values = [
   {
@@ -45,7 +49,7 @@ const aboutFaqs = [
   {
     question: "What does Oryen Solutions do?",
     answer:
-      "Oryen Solutions builds custom web platforms, mobile apps, CRM and ERP systems, SaaS products, AI-powered automation and BIM automation tools, using an agile, founder-led delivery approach.",
+      "Oryen Solutions builds custom web platforms, mobile apps, CRM and ERP systems, SaaS products and AI-powered automation, using an agile, founder-led delivery approach.",
   },
   {
     question: "Where is Oryen Solutions based?",
@@ -67,7 +71,7 @@ const aboutFaqs = [
 export const metadata: Metadata = buildMetadata({
   title: "About Oryen Solutions",
   description:
-    "Oryen Solutions is a founder-led software studio in Ahmedabad, India, building web, mobile, CRM, SaaS and BIM automation solutions for clients in the US and worldwide.",
+    "Oryen Solutions is a founder-led software studio in Ahmedabad, India, building web, mobile, CRM, SaaS and AI automation solutions for clients in the US and worldwide.",
   path: routes.about,
   keywords: ["about Oryen Solutions", "Ahmedabad software company", "founder-led software studio"],
 });
@@ -115,7 +119,7 @@ export default function AboutPage() {
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
               <p className="text-xs font-semibold uppercase tracking-wider text-sky-300">What we build</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">Web & mobile apps, CRMs, SaaS products, AI automation and BIM tools.</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">Web & mobile apps, CRMs, SaaS products and AI automation.</p>
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur">
               <p className="text-xs font-semibold uppercase tracking-wider text-sky-300">Who we serve</p>
@@ -186,7 +190,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <DualSectorSection />
       <WhyChooseUs />
 
       <section className="bg-white py-20 sm:py-28">

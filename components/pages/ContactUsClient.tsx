@@ -11,7 +11,6 @@ const services = [
   "CRM / ERP system",
   "SaaS product",
   "AI & automation",
-  "BIM / Tekla automation",
   "Something else",
 ] as const;
 
@@ -54,19 +53,6 @@ export function ContactUsForm() {
     const formData = new FormData(form);
     const value = (key: string) => String(formData.get(key) ?? "");
 
-<<<<<<< HEAD
-    const res = await fetch("/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    setLoading(false);
-    if (res.ok) {
-      form.reset();
-      setStatus("Thank you. Your inquiry has been submitted.");
-      return;
-=======
     try {
       const res = await fetch("/api/contact-submit", {
         method: "POST",
@@ -93,7 +79,6 @@ export function ContactUsForm() {
       setError("Couldn't send your message. Please check your connection and try again.");
     } finally {
       setLoading(false);
->>>>>>> 39a65ba (changes in new)
     }
   }
 

@@ -33,18 +33,6 @@ const contrasts = [
 
 export function WhyChooseUs() {
   return (
-<<<<<<< HEAD
-    <section className="bg-[#f8fcff] py-20 sm:py-24">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">
-            Why Choose OryenSolutions
-          </p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-[#021024]">Specialized execution beats generic agency promises.</h2>
-          <p className="mt-4 text-lg text-[var(--text-body)]">
-            The advantage is not just speed. It is domain understanding, tighter feedback loops, and builds that fit the way your team already works.
-          </p>
-=======
     <section id="why-us" className="relative overflow-hidden bg-[var(--navy)] py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-0 dark-grid" />
       <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-[#0077b6]/30 blur-[120px]" />
@@ -71,7 +59,6 @@ export function WhyChooseUs() {
               </div>
             ))}
           </div>
->>>>>>> 39a65ba (changes in new)
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">

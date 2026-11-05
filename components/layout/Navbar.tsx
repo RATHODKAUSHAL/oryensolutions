@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ArrowRightIcon, BuildingIcon, CodeIcon, PlugIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CodeIcon, LayersIcon, PlugIcon } from "@/components/ui/icons";
 
 type NavItem = { label: string; href: string; description?: string; icon?: typeof CodeIcon };
 
@@ -17,12 +17,12 @@ const navGroups: { about: readonly NavItem[]; services: readonly NavItem[] } = {
     { label: "Agile Mindset", href: "/agile-mindset", description: "Our sprint-based delivery approach" },
   ],
   services: [
-<<<<<<< HEAD
-    { label: "All Services", href: "/services" },
-    { label: "BIM Automation & Tekla Custom Development", href: "/services/bim-automation-tekla-custom-development" },
-    { label: "Web Development & Digital Solutions", href: "/services/web-development-digital-solutions" },
-    { label: "Software Integration & Custom Automation", href: "/services/software-integration-custom-automation" },
-=======
+    {
+      label: "All Services",
+      href: "/services",
+      description: "Every service we offer, in one place",
+      icon: LayersIcon,
+    },
     {
       label: "Web, Mobile & SaaS Development",
       href: "/services/web-development-digital-solutions",
@@ -35,13 +35,6 @@ const navGroups: { about: readonly NavItem[]; services: readonly NavItem[] } = {
       description: "Connect your systems and automate manual work",
       icon: PlugIcon,
     },
-    {
-      label: "BIM Automation & Tekla Development",
-      href: "/services/bim-automation-tekla-custom-development",
-      description: "Tekla plugins, drawing automation and Revit tools",
-      icon: BuildingIcon,
-    },
->>>>>>> 39a65ba (changes in new)
   ],
 } as const;
 

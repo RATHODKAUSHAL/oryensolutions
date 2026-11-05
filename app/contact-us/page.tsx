@@ -4,12 +4,17 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { ContactUsForm } from "@/components/pages/ContactUsClient";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { breadcrumbList, buildMetadata, faqSchema, routes, siteConfig } from "@/lib/site";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { PageHero } from "@/components/sections/PageHero";
+import { SectionHeading } from "@/components/sections/SectionHeading";
+import { ChatIcon, GlobeIcon, MailIcon, MapPinIcon, PhoneIcon } from "@/components/ui/icons";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { breadcrumbList, buildMetadata, faqSchema, routes, siteConfig, webPageSchema } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact Oryen Solutions",
   description:
-    "Book a free consultation with Oryen Solutions to discuss your web, mobile, CRM, SaaS, AI automation or BIM project. Serving clients in the US and worldwide.",
+    "Book a free consultation with Oryen Solutions to discuss your web, mobile, CRM, SaaS or AI automation project. Serving clients in the US and worldwide.",
   path: routes.contact,
   keywords: ["contact Oryen Solutions", "free software consultation", "hire software development company"],
 });
@@ -59,7 +64,7 @@ export default function ContactUsPage() {
           ]),
           webPageSchema({
             name: "Contact OryenSolutions",
-            description: "Contact OryenSolutions for web development, AI automation, BIM automation, and software integration projects.",
+            description: "Contact OryenSolutions for web development, mobile apps, AI automation, and software integration projects.",
             path: routes.contact,
             type: "ContactPage",
           }),

@@ -15,15 +15,8 @@ const navLinks = [
 ] as const;
 
 const serviceLinks = [
-  { label: "Web Development", href: "/services/web-development-digital-solutions" },
-  { label: "CRM Development", href: "/services/web-development-digital-solutions" },
-  { label: "SaaS Development", href: "/services/web-development-digital-solutions" },
-] as const;
-
-const bimLinks = [
-  { label: "Tekla Automation", href: "/services/bim-automation-tekla-custom-development" },
-  { label: "Revit Development", href: "/services/bim-automation-tekla-custom-development" },
-  { label: "BIM Integration", href: "/services/software-integration-custom-automation" },
+  { label: "Web, Mobile & SaaS", href: routes.servicesWeb },
+  { label: "AI & Automation", href: routes.servicesAutomation },
 ] as const;
 
 const socials = [

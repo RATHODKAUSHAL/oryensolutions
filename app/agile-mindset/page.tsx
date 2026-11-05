@@ -3,7 +3,14 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { articleSchema, breadcrumbList, buildMetadata, faqSchema, routes } from "@/lib/site";
+import { CTASection } from "@/components/sections/CTASection";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { PageHero } from "@/components/sections/PageHero";
+import { SectionHeading } from "@/components/sections/SectionHeading";
+import { SprintCycle } from "@/components/sections/SprintCycle";
+import { CheckIcon, ClockIcon, EyeIcon, LayersIcon, SparklesIcon } from "@/components/ui/icons";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { articleSchema, breadcrumbList, buildMetadata, faqSchema, routes, webPageSchema } from "@/lib/site";
 
 const principles = [
   {
@@ -53,16 +60,16 @@ const agileFaqs = [
       "Yes. That's one of agile's biggest advantages. Priorities are reviewed every sprint, so new ideas and feedback can be added without derailing the project.",
   },
   {
-    question: "Why does Oryen Solutions use agile for BIM and web projects?",
+    question: "Why does Oryen Solutions use agile for every project?",
     answer:
-      "Agile works for both because it improves visibility, shortens feedback loops and helps teams deliver the most important outcomes first, whether that's a web app or a Tekla automation tool.",
+      "Agile improves visibility, shortens feedback loops and helps teams deliver the most important outcomes first, whether that's a web app, a mobile app or an AI automation workflow.",
   },
 ] as const;
 
 export const metadata: Metadata = buildMetadata({
   title: "Our Agile Delivery Approach",
   description:
-    "See how Oryen Solutions uses agile sprints, weekly demos and continuous improvement to reduce project risk and deliver web, SaaS, CRM and BIM automation projects faster.",
+    "See how Oryen Solutions uses agile sprints, weekly demos and continuous improvement to reduce project risk and deliver web, SaaS, CRM and AI automation projects faster.",
   path: routes.agileMindset,
   keywords: ["agile software delivery", "agile development company", "weekly sprint demos"],
 });
@@ -78,7 +85,7 @@ export default function AgileMindsetPage() {
           ]),
           webPageSchema({
             name: "Agile Delivery Approach",
-            description: "How OryenSolutions uses agile delivery to accelerate software and BIM automation projects.",
+            description: "How OryenSolutions uses agile delivery to accelerate software and automation projects.",
             path: routes.agileMindset,
           }),
           articleSchema({

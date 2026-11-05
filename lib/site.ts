@@ -4,9 +4,9 @@ export const siteConfig = {
   name: "OryenSolutions",
   legalName: "Oryen Solutions",
   description:
-    "Oryen Solutions is a software development company in Ahmedabad, Gujarat, India delivering web development, SaaS development, CRM development, mobile app development, AI automation, API integrations, BIM automation, Tekla plugin development, and enterprise software solutions for global clients.",
+    "Oryen Solutions is a software development company in Ahmedabad, Gujarat, India delivering web development, SaaS development, CRM development, mobile app development, AI automation, API integrations, and enterprise software solutions for global clients.",
   shortDescription:
-    "Custom software, AI automation, BIM workflows, and integration engineering for growth-focused businesses.",
+    "Custom software, AI automation, and integration engineering for growth-focused businesses.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.oryensolutions.com",
   email: "info@oryensolutions.com",
   phone: "+91 92658 85370",
@@ -27,9 +27,6 @@ export const siteConfig = {
     "CRM development company",
     "SaaS development company",
     "full stack development agency",
-    "Tekla plugin development",
-    "BIM automation services",
-    "Tekla API development",
     "React development company",
     "Next.js development agency",
     "Laravel development company",
@@ -53,7 +50,6 @@ export const routes = {
   services: "/services",
   servicesWeb: "/services/web-development-digital-solutions",
   servicesAutomation: "/services/software-integration-custom-automation",
-  servicesBim: "/services/bim-automation-tekla-custom-development",
 } as const;
 
 export function absoluteUrl(path: string) {
@@ -291,7 +287,7 @@ export function serviceSchema({
     termsOfService: absoluteUrl(routes.contact),
     audience: {
       "@type": "BusinessAudience",
-      audienceType: "Startups, SMEs, enterprises, engineering firms",
+      audienceType: "Startups, SMEs, enterprises",
     },
     keywords: keywords.join(", "),
   };

@@ -10,13 +10,12 @@ import { breadcrumbList, buildMetadata, routes, serviceSchema, webPageSchema } f
 export const metadata: Metadata = buildMetadata({
   title: "Software Development Services",
   description:
-    "Explore OryenSolutions services for web development, SaaS development, CRM development, AI automation, API integrations, BIM automation, Tekla plugin development, and enterprise software solutions.",
+    "Explore OryenSolutions services for web development, SaaS development, CRM development, AI automation, API integrations, mobile app development, and enterprise software solutions.",
   path: routes.services,
   keywords: [
     "web development company India",
     "custom software development company",
     "AI automation agency",
-    "BIM automation services",
     "API integration services",
   ],
 });
@@ -33,7 +32,7 @@ export default function ServicesPage() {
           webPageSchema({
             name: "Software Development Services",
             description:
-              "Service directory for OryenSolutions covering custom software development, AI automation, BIM automation, integrations, and digital product engineering.",
+              "Service directory for OryenSolutions covering custom software development, AI automation, integrations, and digital product engineering.",
             path: routes.services,
             type: "CollectionPage",
           }),
@@ -56,7 +55,7 @@ export default function ServicesPage() {
           <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#052659]">
             Service Directory
           </p>
-          <h1 className="mt-5 max-w-5xl text-4xl font-bold sm:text-5xl lg:text-6xl">Software Development, Automation, BIM, and Integration Services</h1>
+          <h1 className="mt-5 max-w-5xl text-4xl font-bold sm:text-5xl lg:text-6xl">Software Development, Automation, and Integration Services</h1>
           <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">
             OryenSolutions helps businesses in Ahmedabad, Gujarat, India and global markets build modern digital products, streamline operations, and improve engineering workflows.
           </p>

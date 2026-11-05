@@ -3,12 +3,12 @@ export const homeFaqs = [
   {
     question: "What does Oryen Solutions build?",
     answer:
-      "We design and build custom web applications, mobile apps (Android & iOS), CRM and ERP systems, SaaS products and AI-powered automation. We also have a specialist practice building Tekla and BIM automation tools for structural engineering firms.",
+      "We design and build custom web applications, mobile apps (Android & iOS), CRM and ERP systems, SaaS products and AI-powered automation.",
   },
   {
     question: "Which industries do you work with?",
     answer:
-      "Healthcare, banking & finance, education, logistics & supply chain, automotive, retail & fashion, travel & hospitality, food & restaurants, real estate and structural engineering. Most of what we build is shaped around a specific industry workflow rather than a generic template.",
+      "Healthcare, banking & finance, education, logistics & supply chain, automotive, retail & fashion, travel & hospitality, food & restaurants and real estate. Most of what we build is shaped around a specific industry workflow rather than a generic template.",
   },
   {
     question: "Do you work with early-stage startups?",
@@ -33,7 +33,7 @@ export const homeFaqs = [
   {
     question: "Which technologies do you use?",
     answer:
-      "React, Next.js, Node.js, TypeScript and JavaScript for web, with PostgreSQL, MySQL or MongoDB for data, deployed on AWS, Google Cloud or Vercel. For engineering automation we work with the Tekla Open API, Revit and AutoCAD.",
+      "React, Next.js, Node.js, TypeScript and JavaScript for web, with PostgreSQL, MySQL or MongoDB for data, deployed on AWS, Google Cloud or Vercel. For AI features we integrate OpenAI and similar APIs into your product.",
   },
   {
     question: "Do you provide support after launch?",

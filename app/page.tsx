@@ -15,33 +15,16 @@ import { StartupSection } from "@/components/sections/StartupSection";
 import { StatsBar } from "@/components/sections/StatsBar";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { breadcrumbList, buildMetadata, faqSchema, routes, serviceSchema } from "@/lib/site";
+import { homeFaqs } from "@/lib/faqs";
+import { breadcrumbList, buildMetadata, faqSchema, routes, serviceSchema, webPageSchema } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Web Development, BIM Automation & Custom Software Services",
+  title: "Custom Software, Web & Mobile App Development Company",
   description:
-    "OryenSolutions delivers web development, SaaS, CRM, BIM automation, and software integration services for businesses that need faster delivery and scalable systems.",
+    "Oryen Solutions builds web platforms, mobile apps, CRM & ERP systems, SaaS products and startup MVPs for clients in the US and worldwide, across 10+ industries. Book a free consultation.",
   path: routes.home,
-  keywords: ["custom software development", "Tekla automation company", "software integration company"],
+  keywords: ["custom software development", "mobile app development company", "CRM development company", "SaaS development company"],
 });
-
-const homeFaqs = [
-  {
-    question: "What services does OryenSolutions provide?",
-    answer:
-      "OryenSolutions provides web development, SaaS product engineering, CRM development, BIM automation, Tekla custom development, and software integration services for growing businesses and engineering teams.",
-  },
-  {
-    question: "How does OryenSolutions improve delivery speed?",
-    answer:
-      "The team uses agile delivery, structured discovery, focused sprint execution, and automation-first workflows to reduce manual work, shorten release cycles, and improve project visibility.",
-  },
-  {
-    question: "Who should work with OryenSolutions?",
-    answer:
-      "OryenSolutions is a strong fit for businesses that need custom digital products, integration support, or BIM workflow automation with a practical, engineering-led delivery process.",
-  },
-] as const;
 
 export default function Home() {
   return (
@@ -52,7 +35,7 @@ export default function Home() {
           webPageSchema({
             name: "OryenSolutions Home",
             description:
-              "Homepage for OryenSolutions, a software development company offering web development, AI automation, BIM automation, and software integration services.",
+              "Homepage for OryenSolutions, a software development company offering web development, mobile apps, AI automation, and software integration services.",
             path: routes.home,
           }),
           faqSchema([...homeFaqs]),
@@ -61,12 +44,6 @@ export default function Home() {
             description: "Custom websites, SaaS products, CRM systems, and scalable web applications.",
             path: routes.servicesWeb,
             serviceType: "Web Development",
-          }),
-          serviceSchema({
-            name: "BIM Automation & Tekla Custom Development",
-            description: "Tekla automation, custom BIM workflows, and structural engineering productivity tooling.",
-            path: routes.servicesBim,
-            serviceType: "BIM Automation",
           }),
           serviceSchema({
             name: "Software Integration & Custom Automation",
@@ -78,18 +55,16 @@ export default function Home() {
       />
       <Navbar />
       <HeroSection />
-      <AboutSection />
-      {/* <StatsSection /> */}
-      <DualSectorSection />
+      <StatsBar />
       <ServicesSection />
       <IndustriesSection />
       <StartupSection />
       <WhyChooseUs />
       <ProcessSection />
-      {/* <FeaturesSection /> */}
+      <EngagementSection />
       <IntegrationsSection />
       <FAQSection />
-      <CTASection />
+      <CTASection variant="link" />
       <Footer />
       <WhatsAppButton />
     </main>
