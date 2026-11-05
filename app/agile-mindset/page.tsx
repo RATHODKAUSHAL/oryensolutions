@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { articleSchema, breadcrumbList, buildMetadata, faqSchema, routes } from "@/lib/site";
+import { articleSchema, breadcrumbList, buildMetadata, faqSchema, routes, webPageSchema } from "@/lib/site";
 
 const principles = [
   {
@@ -72,6 +72,11 @@ export default function AgileMindsetPage() {
             { name: "Home", path: routes.home },
             { name: "Agile Mindset", path: routes.agileMindset },
           ]),
+          webPageSchema({
+            name: "Agile Delivery Approach",
+            description: "How OryenSolutions uses agile delivery to accelerate software and BIM automation projects.",
+            path: routes.agileMindset,
+          }),
           articleSchema({
             headline: "How OryenSolutions Delivers Faster With Agile",
             description:

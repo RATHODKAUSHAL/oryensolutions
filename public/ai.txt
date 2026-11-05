@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+Brand: OryenSolutions
+Website: https://www.oryensolutions.com/
+Category: Software development company
+Location: Ahmedabad, Gujarat, India
+
+Entity summary:
+OryenSolutions provides web development, SaaS development, CRM development, mobile app development, AI automation, AI agent development, API integration services, BIM automation services, Tekla plugin development, and enterprise software solutions.
+
+Audience:
+- Startups
+- Small and mid-sized businesses
+- Enterprise teams
+- Structural engineering and BIM teams
+- Global companies seeking software delivery support
+
+Top service entities:
+- Web development company India
+- Custom software development company
+- AI automation agency
+- AI agent development company
+- CRM development company
+- SaaS development company
+- API integration services
+- BIM automation services
+- Tekla plugin development
+- Enterprise software development
+
+Canonical sitemap:
+https://www.oryensolutions.com/sitemap.xml

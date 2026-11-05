@@ -81,9 +81,9 @@ export function WhyChooseUs() {
           <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">
             Why Choose OryenSolutions
           </p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-[#021024]">Fresh Ideas, Modern Solutions</h2>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight text-[#021024]">Specialized execution beats generic agency promises.</h2>
           <p className="mt-4 text-lg text-[var(--text-body)]">
-            We combine practical delivery with advanced engineering to build solutions that stay reliable at scale.
+            The advantage is not just speed. It is domain understanding, tighter feedback loops, and builds that fit the way your team already works.
           </p>
         </div>
 

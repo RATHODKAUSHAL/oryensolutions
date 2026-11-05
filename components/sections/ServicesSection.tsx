@@ -72,14 +72,13 @@ export function ServicesSection() {
   return (
     <section id="services" className="bg-white py-20 sm:py-24">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-[#eaf4fd] px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">
-            Our Expertise
+            What We Build
           </p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-[#021024]">Comprehensive IT Solutions</h2>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight text-[#021024]">Three service lines, shaped around real delivery bottlenecks.</h2>
           <p className="mt-4 max-w-3xl text-lg text-[var(--text-body)]">
-            From engineering automation to full digital platforms, we deliver practical solutions built for long-term value.
+            OryenSolutions sits at the overlap of software delivery and structural engineering workflows, so the work is practical, specialized, and tied to how teams actually operate.
           </p>
         </div>
 
@@ -107,7 +106,7 @@ export function ServicesSection() {
                     ))}
                   </ul>
                   <Link href={service.href} className="mt-5 inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#052659] shadow-sm transition hover:bg-[#eaf4fd]">
-                    View Details -&gt;
+                    See this service in detail -&gt;
                   </Link>
                 </CardContent>
               </Card>

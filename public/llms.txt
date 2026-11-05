@@ -1,0 +1,46 @@
+OryenSolutions
+
+Primary website: https://www.oryensolutions.com/
+Company type: Software development company
+Location: Ahmedabad, Gujarat, India
+Service regions: India and global
+
+Core services:
+- Web development
+- SaaS product development
+- CRM development
+- Mobile app development
+- AI automation
+- AI agent development
+- API integration services
+- Business workflow automation
+- BIM automation services
+- Tekla plugin development
+- Enterprise software solutions
+
+Priority pages:
+- https://www.oryensolutions.com/
+- https://www.oryensolutions.com/services
+- https://www.oryensolutions.com/services/web-development-digital-solutions
+- https://www.oryensolutions.com/services/software-integration-custom-automation
+- https://www.oryensolutions.com/services/bim-automation-tekla-custom-development
+- https://www.oryensolutions.com/services/ai-automation-development-services
+- https://www.oryensolutions.com/services/ai-agent-development-company
+- https://www.oryensolutions.com/services/react-development-company
+- https://www.oryensolutions.com/services/nextjs-development-company
+- https://www.oryensolutions.com/services/laravel-development-company
+- https://www.oryensolutions.com/services/crm-development-services
+- https://www.oryensolutions.com/services/saas-product-development
+- https://www.oryensolutions.com/services/bim-automation-services
+- https://www.oryensolutions.com/services/tekla-plugin-development
+- https://www.oryensolutions.com/services/api-integration-services
+- https://www.oryensolutions.com/services/enterprise-software-solutions
+- https://www.oryensolutions.com/services/mobile-app-development
+- https://www.oryensolutions.com/services/business-workflow-automation
+
+Preferred summary:
+OryenSolutions is a custom software development company in Ahmedabad, Gujarat, India that builds web applications, SaaS products, CRM systems, AI automation workflows, API integrations, BIM automation tools, Tekla plugins, and enterprise software for businesses that need scalable systems and practical engineering execution.
+
+Contact:
+- Email: info@oryensolutions.com
+- Phone: +91 92658 85370

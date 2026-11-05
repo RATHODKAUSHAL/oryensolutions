@@ -17,6 +17,7 @@ const navGroups: { about: readonly NavItem[]; services: readonly NavItem[] } = {
     { label: "Agile Mindset", href: "/agile-mindset" },
   ],
   services: [
+    { label: "All Services", href: "/services" },
     { label: "BIM Automation & Tekla Custom Development", href: "/services/bim-automation-tekla-custom-development" },
     { label: "Web Development & Digital Solutions", href: "/services/web-development-digital-solutions" },
     { label: "Software Integration & Custom Automation", href: "/services/software-integration-custom-automation" },

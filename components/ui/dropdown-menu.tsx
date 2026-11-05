@@ -57,7 +57,11 @@ export function DropdownMenuContent({ children, className }: { children: React.R
   );
 }
 
-export function DropdownMenuItem({ children, className }: { children: React.ReactNode; className?: string }) {
+export function DropdownMenuItem({
+  children,
+  className,
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }) {
   return (
     <button
       type="button"
@@ -66,6 +70,7 @@ export function DropdownMenuItem({ children, className }: { children: React.Reac
         "flex w-full items-center rounded-lg px-3 py-2 text-left text-sm text-slate-700 transition hover:bg-slate-100",
         className,
       )}
+      {...props}
     >
       {children}
     </button>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { breadcrumbList, faqSchema, routes, serviceSchema } from "@/lib/site";
+import { breadcrumbList, faqSchema, routes, serviceSchema, webPageSchema } from "@/lib/site";
 
 type ServicePageTemplateProps = {
   badge: string;
@@ -37,6 +37,12 @@ export function ServicePageTemplate({
             { name: "Home", path: routes.home },
             { name: title, path: slug },
           ]),
+          webPageSchema({
+            name: title,
+            description,
+            path: slug,
+            type: "Service",
+          }),
           serviceSchema({
             name: title,
             description,

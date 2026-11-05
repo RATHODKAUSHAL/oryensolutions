@@ -14,14 +14,14 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { breadcrumbList, buildMetadata, faqSchema, routes, serviceSchema } from "@/lib/site";
+import { breadcrumbList, buildMetadata, faqSchema, routes, serviceSchema, webPageSchema } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Web Development, BIM Automation & Custom Software Services",
+  title: "Web Development Company India | AI Automation, BIM & Custom Software",
   description:
-    "OryenSolutions delivers web development, SaaS, CRM, BIM automation, and software integration services for businesses that need faster delivery and scalable systems.",
+    "OryenSolutions is a web development company in India delivering SaaS development, CRM development, AI automation, BIM automation, Tekla plugin development, API integration services, and custom software solutions for global businesses.",
   path: routes.home,
-  keywords: ["custom software development", "Tekla automation company", "software integration company"],
+  keywords: ["custom software development company", "Tekla automation company", "software integration services", "AI automation agency"],
 });
 
 const homeFaqs = [
@@ -48,6 +48,12 @@ export default function Home() {
       <StructuredData
         data={[
           breadcrumbList([{ name: "Home", path: routes.home }]),
+          webPageSchema({
+            name: "OryenSolutions Home",
+            description:
+              "Homepage for OryenSolutions, a software development company offering web development, AI automation, BIM automation, and software integration services.",
+            path: routes.home,
+          }),
           faqSchema([...homeFaqs]),
           serviceSchema({
             name: "Web Development & Digital Solutions",
@@ -72,11 +78,9 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <AboutSection />
-      {/* <StatsSection /> */}
       <DualSectorSection />
       <ServicesSection />
       <ProcessSection />
-      {/* <FeaturesSection /> */}
       <IntegrationsSection />
       <WhyChooseUs />
       <TestimonialsSection />

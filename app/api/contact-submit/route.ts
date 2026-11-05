@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { appendCsvRow } from "@/lib/submissions";
+import { createLead } from "@/lib/controllers/leads.controller";
 
 export async function POST(request: Request) {
   try {
@@ -11,9 +11,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Full name, email, and message are required." }, { status: 400 });
     }
 
-    const headers = ["submitted_at", "fullName", "companyName", "email", "phone", "subject", "message"];
-    await appendCsvRow("contact_submissions.csv", headers, {
-      submitted_at: new Date().toISOString(),
+    const lead = await createLead({
       fullName: fullName.trim(),
       companyName: (companyName ?? "").trim(),
       email: email.trim(),
@@ -22,7 +20,7 @@ export async function POST(request: Request) {
       message: message.trim(),
     });
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, leadId: lead.id });
   } catch {
     return NextResponse.json({ error: "Failed to submit contact form." }, { status: 500 });
   }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { CareersClient } from "@/components/pages/CareersClient";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { breadcrumbList, buildMetadata, faqSchema, routes } from "@/lib/site";
+import { breadcrumbList, buildMetadata, faqSchema, routes, webPageSchema } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Careers at OryenSolutions",
@@ -34,6 +34,11 @@ export default function CareersPage() {
             { name: "Home", path: routes.home },
             { name: "Careers", path: routes.careers },
           ]),
+          webPageSchema({
+            name: "Careers at OryenSolutions",
+            description: "Career page for OryenSolutions with resume submission for future software, BIM, and automation roles.",
+            path: routes.careers,
+          }),
           faqSchema([...careerFaqs]),
         ]}
       />

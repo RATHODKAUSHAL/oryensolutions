@@ -35,7 +35,7 @@ export function ProcessSection() {
           <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">
             How We Work
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#021024] sm:text-4xl">Delivery Flow That Stays Predictable</h2>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#021024] sm:text-4xl">A delivery process built to keep scope clear and momentum visible.</h2>
         </div>
 
         <div className="mt-12 lg:hidden">

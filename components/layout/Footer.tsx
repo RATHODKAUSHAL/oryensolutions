@@ -11,14 +11,17 @@ const aboutLinks = [
 
 const serviceLinks = [
   { label: "Web Development", href: "/services/web-development-digital-solutions" },
-  { label: "CRM Development", href: "/services/web-development-digital-solutions" },
-  { label: "SaaS Development", href: "/services/web-development-digital-solutions" },
+  { label: "React Development", href: "/services/react-development-company" },
+  { label: "Next.js Development", href: "/services/nextjs-development-company" },
+  { label: "CRM Development", href: "/services/crm-development-services" },
+  { label: "SaaS Development", href: "/services/saas-product-development" },
 ] as const;
 
 const bimLinks = [
-  { label: "Tekla Automation", href: "/services/bim-automation-tekla-custom-development" },
-  { label: "Revit Development", href: "/services/bim-automation-tekla-custom-development" },
-  { label: "BIM Integration", href: "/services/software-integration-custom-automation" },
+  { label: "BIM Automation", href: "/services/bim-automation-services" },
+  { label: "Tekla Plugin Development", href: "/services/tekla-plugin-development" },
+  { label: "API Integration", href: "/services/api-integration-services" },
+  { label: "Workflow Automation", href: "/services/business-workflow-automation" },
 ] as const;
 
 const socials = [

@@ -8,7 +8,7 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { DualSectorSection } from "@/components/sections/DualSectorSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
-import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes } from "@/lib/site";
+import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes, webPageSchema } from "@/lib/site";
 
 const agilePractices = [
   {
@@ -62,6 +62,13 @@ export default function AboutPage() {
       <StructuredData
         data={[
           organizationSchema(),
+          webPageSchema({
+            name: "About OryenSolutions",
+            description:
+              "Learn about OryenSolutions, an Ahmedabad-based software and automation company focused on agile engineering and practical digital delivery.",
+            path: routes.about,
+            type: "AboutPage",
+          }),
           breadcrumbList([
             { name: "Home", path: routes.home },
             { name: "About", path: routes.about },

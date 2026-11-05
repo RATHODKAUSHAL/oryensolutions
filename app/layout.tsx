@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import type { Viewport } from "next";
 import { Roboto_Mono, Rubik } from "next/font/google";
+import Script from "next/script";
 import { PWAController } from "@/components/pwa/PWAController";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { organizationSchema, siteConfig, websiteSchema } from "@/lib/site";
+import { localBusinessSchema, organizationSchema, reviewSchema, siteConfig, websiteSchema } from "@/lib/site";
 import "./globals.css";
 
 const rubik = Rubik({
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: siteConfig.keywords,
+  creator: siteConfig.legalName,
+  publisher: siteConfig.legalName,
   alternates: {
     canonical: siteConfig.url,
   },
@@ -80,9 +83,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XEHZW4RXJZ" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XEHZW4RXJZ');
+        `}
+      </Script>
       <body className={`${rubik.variable} ${robotoMono.variable} antialiased`}>
-        <StructuredData data={[organizationSchema(), websiteSchema()]} />
+        <StructuredData data={[organizationSchema(), localBusinessSchema(), websiteSchema(), reviewSchema()]} />
         {children}
         <PWAController />
       </body>

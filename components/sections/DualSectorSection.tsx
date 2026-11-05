@@ -6,13 +6,13 @@ import { AnimatePresence, motion } from "framer-motion";
 const sectorTabs = [
   {
     id: "it",
-    label: "IT & Digital Solutions",
-    heading: "Web, Mobile & SaaS Solutions for Modern Businesses",
+    label: "IT & Digital Products",
+    heading: "Custom software for the teams that have outgrown off-the-shelf tools.",
     description:
-      "From custom CRM development and SaaS product engineering to mobile apps and full-stack web platforms - we help businesses build the digital infrastructure they need to grow.",
+      "From client-facing platforms to internal systems, we build software that matches the way your business already works instead of forcing your process into a generic product.",
     items: [
       "Full-Stack Web Development",
-      "Custom CRM And Saas product Development",
+      "Custom CRM And SaaS Product Development",
       "Mobile App Development (Android & iOS)",
       "UI/UX Design & Development",
       "API Integration & Data Visualization",
@@ -21,16 +21,16 @@ const sectorTabs = [
   },
   {
     id: "bim",
-    label: "BIM & Ravit Automation",
-    heading: "Structural Engineering Automation Powered by Tekla API",
+    label: "BIM Automation",
+    heading: "Engineering automation that removes repetitive drafting and coordination work.",
     description:
-      "We build custom Tekla plugins, macros, and automation tools that eliminate manual workflows - from automated shop drawing generation to BOM customization and REBAR/RAVIT automation.",
+      "We build custom Tekla plugins, macros, and workflow tools that reduce manual effort across drawings, reports, model coordination, and production data handoffs.",
     items: [
       "Tekla Plugin & Macro Development",
       "Automated Drawing Creation Tools",
       "BOM & Report Customization",
       "Tekla-Excel Data Integration",
-      "REBAR & RAVIT Automation Solutions",
+      "Rebar & Revit Automation Solutions",
       "Custom Tekla API Tool Development",
     ],
   },
@@ -47,8 +47,8 @@ export function DualSectorSection() {
       <div className="pointer-events-none absolute -right-16 bottom-10 h-64 w-64 rounded-full bg-[#7DA0CA]/40 blur-3xl" />
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative text-center">
-          <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">Our Sectors</p>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-[#021024] sm:text-5xl">Two Powerful Domains. One Partner.</h2>
+          <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">Why The Mix Matters</p>
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-[#021024] sm:text-5xl">A rare combination: product engineering and BIM automation under one roof.</h2>
         </div>
 
         <div className="relative mx-auto mt-10 flex w-fit rounded-full border border-[#7DA0CA]/45 bg-white/90 p-1 shadow-[0_8px_18px_rgba(84,131,179,0.14)]">

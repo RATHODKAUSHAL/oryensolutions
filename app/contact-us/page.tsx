@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { ContactUsClient } from "@/components/pages/ContactUsClient";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { breadcrumbList, buildMetadata, faqSchema, routes, siteConfig } from "@/lib/site";
+import { breadcrumbList, buildMetadata, faqSchema, routes, siteConfig, webPageSchema } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact OryenSolutions",
@@ -34,6 +34,12 @@ export default function ContactUsPage() {
             { name: "Home", path: routes.home },
             { name: "Contact Us", path: routes.contact },
           ]),
+          webPageSchema({
+            name: "Contact OryenSolutions",
+            description: "Contact OryenSolutions for web development, AI automation, BIM automation, and software integration projects.",
+            path: routes.contact,
+            type: "ContactPage",
+          }),
           faqSchema([...contactFaqs]),
           {
             "@context": "https://schema.org",

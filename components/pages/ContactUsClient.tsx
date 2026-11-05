@@ -27,7 +27,7 @@ export function ContactUsClient() {
       message: String(formData.get("message") ?? ""),
     };
 
-    const res = await fetch("/api/contact-submit", {
+    const res = await fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

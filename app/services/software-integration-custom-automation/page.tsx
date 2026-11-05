@@ -45,6 +45,51 @@ export default function SoftwareIntegrationPage() {
           answer:
             "Custom automation reduces repetitive manual work, improves data consistency, and helps teams move faster with fewer operational bottlenecks.",
         },
+        {
+          question: "What are software integration services?",
+          answer:
+            "Software integration services connect business systems so data can move automatically, workflows can trigger reliably, and teams can work with fewer manual handoffs.",
+        },
+        {
+          question: "Can integrations connect our website, CRM, and internal tools?",
+          answer:
+            "Yes. We frequently connect lead forms, websites, CRMs, dashboards, spreadsheets, and internal software into one operational flow.",
+        },
+        {
+          question: "Do you build workflow automation on top of integrations?",
+          answer:
+            "Yes. Once systems are connected, we can automate notifications, assignments, approvals, reporting, and repetitive operational tasks.",
+        },
+        {
+          question: "How do you handle integration reliability?",
+          answer:
+            "We design for error handling, validation, retries, and monitoring so integrations remain dependable in real business usage.",
+        },
+        {
+          question: "Can you help if our processes span multiple SaaS tools?",
+          answer:
+            "Yes. Multi-tool workflows are a common reason businesses invest in custom integration and automation work.",
+        },
+        {
+          question: "Is custom integration better than generic connector tools?",
+          answer:
+            "Custom integrations provide more control over data quality, business rules, edge cases, and long-term extensibility than generic connector setups.",
+        },
+        {
+          question: "Can this service support AI automation initiatives?",
+          answer:
+            "Yes. AI automation becomes more useful when connected to CRMs, knowledge sources, ticketing systems, and operational data through integrations.",
+        },
+        {
+          question: "What teams benefit most from custom automation?",
+          answer:
+            "Sales, support, operations, and delivery teams benefit when repetitive handoffs and duplicate data entry slow down execution.",
+        },
+        {
+          question: "Do you offer software integration services for businesses in India and globally?",
+          answer:
+            "Yes. OryenSolutions supports software integration and automation projects for companies in Ahmedabad, Gujarat, India and international markets.",
+        },
       ]}
     />
   );
