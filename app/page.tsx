@@ -64,7 +64,7 @@ export default function Home() {
       <EngagementSection />
       <IntegrationsSection />
       <FAQSection />
-      <CTASection variant="link" />
+      <CTASection />
       <Footer />
       <WhatsAppButton />
     </main>

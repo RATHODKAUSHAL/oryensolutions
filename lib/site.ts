@@ -50,6 +50,7 @@ export const routes = {
   services: "/services",
   servicesWeb: "/services/web-development-digital-solutions",
   servicesAutomation: "/services/software-integration-custom-automation",
+  blog: "/blog",
 } as const;
 
 export function absoluteUrl(path: string) {
@@ -369,6 +370,54 @@ export function softwareApplicationSchema({
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+    },
+  };
+}
+
+export function blogPostingSchema({
+  headline,
+  description,
+  path,
+  datePublished,
+  dateModified,
+  keywords = [],
+  section,
+  image = "/Assets/Oryen_Solutions.png",
+}: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  keywords?: string[];
+  section?: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${absoluteUrl(path)}#article`,
+    headline,
+    description,
+    url: absoluteUrl(path),
+    image: absoluteUrl(image),
+    datePublished,
+    dateModified,
+    articleSection: section,
+    keywords: keywords.join(", "),
+    inLanguage: "en",
+    author: {
+      "@id": `${siteConfig.url}#organization`,
+    },
+    publisher: {
+      "@id": `${siteConfig.url}#organization`,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(path),
+    },
+    isPartOf: {
+      "@id": `${siteConfig.url}#website`,
     },
   };
 }

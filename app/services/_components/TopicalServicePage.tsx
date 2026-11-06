@@ -180,7 +180,7 @@ export function TopicalServicePage({ page }: TopicalServicePageProps) {
       <section className="py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-[2rem] border border-[#7DA0CA]/35 bg-[#052659] p-8 text-white shadow-[0_20px_50px_rgba(2,16,36,0.16)] sm:p-10">
-            <h2 className="text-3xl font-bold sm:text-4xl">Need a Team That Can Actually Implement This?</h2>
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">Need a Team That Can Actually Implement This?</h2>
             <p className="mt-4 max-w-3xl text-lg text-[#dbeeff]">
               OryenSolutions works with businesses in Ahmedabad, Gujarat, India and international markets to build practical software, automation, and integration systems.
             </p>

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { blogPath, blogPosts } from "@/lib/blog";
 import { landingPages } from "@/lib/landing-pages";
 import { routes, siteConfig } from "@/lib/site";
 
@@ -20,6 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.84,
+    })),
+    { url: `${siteConfig.url}${routes.blog}`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    ...blogPosts.map((post) => ({
+      url: `${siteConfig.url}${blogPath(post.slug)}`,
+      lastModified: new Date(`${post.updatedAt}T00:00:00.000Z`),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
   ];
 }

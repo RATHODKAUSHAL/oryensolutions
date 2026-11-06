@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { QuickContactForm } from "@/components/sections/QuickContactForm";
 import { ArrowRightIcon, ChatIcon, CheckIcon, GlobeIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 import { routes, siteConfig } from "@/lib/site";
 
@@ -12,12 +11,8 @@ const nextSteps = [
 
 const promises = ["Free, no-obligation consultation", "Clear scope, timeline and estimate", "Reply by email with next steps"] as const;
 
-type CTASectionProps = {
-  /** "form" shows the quick enquiry form; "link" sends visitors to the full contact page instead. */
-  variant?: "form" | "link";
-};
-
-export function CTASection({ variant = "form" }: CTASectionProps) {
+// The only contact form lives on /contact-us; every other page sends visitors there.
+export function CTASection() {
   return (
     <section id="contact" className="scroll-mt-20 bg-white py-20 sm:py-24">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -71,10 +66,7 @@ export function CTASection({ variant = "form" }: CTASectionProps) {
               </div>
             </div>
 
-            {variant === "form" ? (
-              <QuickContactForm />
-            ) : (
-              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-[0_30px_60px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-9">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-[0_30px_60px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-9">
                 <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-violet-500/25 blur-3xl" />
                 <p className="relative text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">Start your project</p>
                 <h3 className="relative mt-3 text-2xl font-bold text-white sm:text-3xl">Tell us what you want to build</h3>
@@ -110,7 +102,6 @@ export function CTASection({ variant = "form" }: CTASectionProps) {
                   </a>
                 </div>
               </div>
-            )}
           </div>
         </div>
       </div>
